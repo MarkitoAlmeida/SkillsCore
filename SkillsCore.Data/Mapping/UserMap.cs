@@ -50,7 +50,7 @@ namespace SkillsCore.Data.Mapping
                 .HasMaxLength(200)
                 .HasColumnType("varchar(200)");
 
-            builder.Property(x => x.StateProvice)
+            builder.Property(x => x.StateProvince)
                 .IsRequired(false)
                 .HasMaxLength(200)
                 .HasColumnType("varchar(200)");

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels;
-using SkillsCore.Application.ViewModels.UserViewModel;
+using SkillsCore.Application.ViewModels.UserViewModels;
 
 namespace SkillsCore.API.Controllers
 {
@@ -91,8 +91,6 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("createUser", Name = "CreateUser")]
-        [ProducesResponseType(typeof(UserViewModel), 200)]
-        [ProducesResponseType(typeof(string), 401)]
         public IActionResult CreateUser([FromBody] CreateUserViewModel createUser)
         {
             var result = _userServices.CreateUser(createUser);
@@ -110,11 +108,9 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("updateUser", Name = "UpdateUser")]
-        [ProducesResponseType(typeof(UserViewModel), 200)]
-        [ProducesResponseType(typeof(string), 401)]
-        public IActionResult CreateUser([FromBody] UpdateUserViewModel createUser)
+        public IActionResult CreateUser([FromBody] UpdateUserViewModel updateUser)
         {
-            var result = _userServices.CreateUser(createUser);
+            var result = _userServices.UpdateUser(updateUser);
 
             return result.Success ? new ObjectResult(result) : BadRequest(result);
         }
