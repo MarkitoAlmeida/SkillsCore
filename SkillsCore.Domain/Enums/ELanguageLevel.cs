@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SkillsCore.Application.ViewModels
+namespace SkillsCore.Domain.Enums
 {
-    public class UserViewModel
+    public enum ELanguageLevel
     {
     }
 }

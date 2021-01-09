@@ -1,10 +1,13 @@
-﻿using System;
+﻿using SkillsCore.Application.ViewModels;
+using SkillsCore.Application.ViewModels.UserViewModel;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SkillsCore.Application.Interfaces.Services
 {
     public interface IUserService
     {
+        IEnumerable<UserViewModel> GetUsers();
+        UserViewModel GetUserByFiscalNr(int fiscalNr);
+        ResultViewModel CreateUser(CreateUserViewModel createUser);
     }
 }

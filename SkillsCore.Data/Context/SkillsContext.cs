@@ -1,5 +1,7 @@
 ﻿using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
+using SkillsCore.Data.Mapping;
+using SkillsCore.Domain.Models;
 
 namespace SkillsCore.Data.Context
 {
@@ -8,7 +10,7 @@ namespace SkillsCore.Data.Context
         public SkillsContext(DbContextOptions options) : base(options) { }
         public SkillsContext() { }
 
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,7 +21,7 @@ namespace SkillsCore.Data.Context
         {
             modelBuilder.Ignore<Notification>();
 
-            //modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
 
             base.OnModelCreating(modelBuilder);
         }
