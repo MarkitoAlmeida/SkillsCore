@@ -11,6 +11,7 @@ namespace SkillsCore.Data.Context
         public SkillsContext() { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Enterprise> Enterprises { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,6 +23,7 @@ namespace SkillsCore.Data.Context
             modelBuilder.Ignore<Notification>();
 
             modelBuilder.ApplyConfiguration(new UserMap());
+            modelBuilder.ApplyConfiguration(new EnterpriseMap());
 
             base.OnModelCreating(modelBuilder);
         }

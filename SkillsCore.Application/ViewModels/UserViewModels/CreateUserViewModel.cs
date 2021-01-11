@@ -43,10 +43,11 @@ namespace SkillsCore.Application.ViewModels
                     .IsNotNull(AdministrationType, "AdministrationType", "O campo 'Perfil' não pode estar vazio.")
                     .IsNotNull(Street, "Street", "O campo 'Street' não pode estar vazio.")
                     .IsNotNull(StateProvice, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
-                    .IsNotNull(City, "StateProvice", "O campo 'City' não pode estar vazio.")
+                    .IsNotNull(City, "City", "O campo 'City' não pode estar vazio.")
+                    .IsNotNull(Country, "Country", "O campo 'Country' não pode estar vazio.")
                     .IsNotNull(CityOfBirth, "CityOfBirth", "O campo 'CityOfBirth' não pode estar vazio.")
                     .IsNotNull(ExperienceTime, "ExperienceTime", "O campo 'ExperienceTime' não pode estar vazio.")
-                    .IsNotNull(Summary, "ExperienceTime", "O campo 'Summary' não pode estar vazio.")
+                    .IsNotNull(Summary, "Summary", "O campo 'Summary' não pode estar vazio.")
                     .IsNotNull(AdministrationType, "AdministrationType", "O campo 'AdministrationType' não pode estar vazio.")
             );
         }
