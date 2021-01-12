@@ -4,34 +4,32 @@ using SkillsCore.Domain.Models;
 
 namespace SkillsCore.Data.Mapping
 {
-    public class AcademicFormationMap : IEntityTypeConfiguration<AcademicFormation>
+    public class LanguageMap : IEntityTypeConfiguration<Language>
     {
-        public void Configure(EntityTypeBuilder<AcademicFormation> builder)
+        public void Configure(EntityTypeBuilder<Language> builder)
         {
-            builder.ToTable("AcademicFormation");
+            builder.ToTable("Language");
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.InstituitionName)
+            builder.Property(x => x.LanguageName)
                 .IsRequired()
-                .HasMaxLength(300)
-                .HasColumnType("varchar(300)");
+                .HasMaxLength(50)
+                .HasColumnType("varchar(50)");
 
-            builder.Property(x => x.ConclusionDate)
+            builder.Property(x => x.LanguageUnderstanding)
                 .IsRequired()
-                .HasColumnType("datetime");
+                .HasColumnType("int");
 
-            builder.Property(x => x.CourseTitle)
+            builder.Property(x => x.LanguageWriting)
                 .IsRequired()
-                .HasMaxLength(300)
-                .HasColumnType("varchar(300)");
+                .HasColumnType("int");
 
-            builder.Property(x => x.FinalPaperTitle)
+            builder.Property(x => x.LanguageSpeaking)
                 .IsRequired()
-                .HasMaxLength(300)
-                .HasColumnType("varchar(300)");
+                .HasColumnType("int");
 
             builder.HasOne<User>(x => x.User)
-                .WithMany(x => x.AcademicFormations)
+                .WithMany(x => x.Languages)
                 .HasForeignKey(x => x.IdUser);
 
             builder.Property(x => x.Active)

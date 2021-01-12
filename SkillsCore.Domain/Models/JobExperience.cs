@@ -1,6 +1,5 @@
 ﻿using SkillsCore.Shared.Models;
 using System;
-using System.Collections.Generic;
 
 namespace SkillsCore.Domain.Models
 {
@@ -11,7 +10,7 @@ namespace SkillsCore.Domain.Models
         public JobExperience() { }
 
         public JobExperience(string enterpriseName, DateTime beginDate, DateTime finalDate, string jobTitle, string projectDescription,
-            string projectResponsabilities, string tecnologiesUsed)
+            string projectResponsabilities, string tecnologiesUsed, Guid idUser)
         {
             EnterpriseName = enterpriseName;
             BeginDate = beginDate;
@@ -20,6 +19,7 @@ namespace SkillsCore.Domain.Models
             ProjectDescription = projectDescription;
             ProjectResponsabilities = projectResponsabilities;
             TecnologiesUsed = tecnologiesUsed;
+            IdUser = idUser;
         }
 
         #endregion
@@ -33,8 +33,9 @@ namespace SkillsCore.Domain.Models
         public string ProjectDescription { get; private set; }
         public string ProjectResponsabilities { get; private set; }
         public string TecnologiesUsed { get; private set; }
+        public Guid IdUser { get; private set; }
 
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual User User { get; set; }
 
         #endregion
 

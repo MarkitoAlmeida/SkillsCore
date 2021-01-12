@@ -1,6 +1,7 @@
 ﻿using SkillsCore.Domain.Enums;
 using SkillsCore.Shared.Models;
 using System;
+using System.Collections.Generic;
 
 namespace SkillsCore.Domain.Models
 {
@@ -12,7 +13,7 @@ namespace SkillsCore.Domain.Models
 
         public User(string name, string lastName, int fiscalNr, string email, string password, DateTime birthDay, EGender gender,
             string phone, string street, string stateProvince, string city, string country, string cityOfBirth, string experienceTime,
-            string summary, EAdministrationType administrationType)
+            string summary, Guid idAdministrationType, Guid idEnterprise)
         {
             Name = name;
             LastName = lastName;
@@ -29,7 +30,8 @@ namespace SkillsCore.Domain.Models
             CityOfBirth = cityOfBirth;
             ExperienceTime = experienceTime;
             Summary = summary;
-            AdministrationType = administrationType;
+            IdAdministrationType = idAdministrationType;
+            IdEnterprise = idEnterprise;
         }
 
         #endregion
@@ -51,13 +53,16 @@ namespace SkillsCore.Domain.Models
         public string CityOfBirth { get; private set; }
         public string ExperienceTime { get; private set; }
         public string Summary { get; private set; }
-        public EAdministrationType AdministrationType { get; private set; }
+        public Guid IdAdministrationType { get; private set; }
         public Guid IdEnterprise { get; private set; }
 
-        public virtual AcademicFormation AcademicFormation { get; set; }
-        public virtual Language Language { get; set; }
-        public virtual Competences Competences { get; set; }
-        public virtual JobExperience JobExperience { get; set; }
+        public virtual AdministrationType AdministrationType { get; private set; }
+        public virtual Enterprise Enterprise { get; set; }
+
+        public virtual IEnumerable<AcademicFormation> AcademicFormations { get; set; }
+        public virtual IEnumerable<Language> Languages { get; set; }
+        public virtual IEnumerable<Competences> Competences { get; set; }
+        public virtual IEnumerable<JobExperience> JobExperiences { get; set; }
 
         #endregion
 

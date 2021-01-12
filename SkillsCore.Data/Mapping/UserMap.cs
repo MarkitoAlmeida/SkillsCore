@@ -79,9 +79,25 @@ namespace SkillsCore.Data.Mapping
                 .IsRequired()
                 .HasColumnType("int");
 
-            builder.Property(x => x.AdministrationType)
-                .IsRequired()
-                .HasColumnType("int");
+            builder.HasOne(x => x.AdministrationType)
+                .WithMany(x => x.Users)
+                .HasForeignKey(x => x.IdAdministrationType);
+
+            builder.HasOne<Enterprise>(x => x.Enterprise)
+                .WithMany(x => x.Users)
+                .HasForeignKey(x => x.IdEnterprise);
+
+            builder.HasMany<AcademicFormation>(x => x.AcademicFormations)
+                .WithOne(x => x.User);
+
+            builder.HasMany<Language>(x => x.Languages)
+                .WithOne(x => x.User);
+
+            builder.HasMany<Competences>(x => x.Competences)
+                .WithOne(x => x.User);
+
+            builder.HasMany<JobExperience>(x => x.JobExperiences)
+                .WithOne(x => x.User);
 
             builder.Property(x => x.Active)
                 .IsRequired()

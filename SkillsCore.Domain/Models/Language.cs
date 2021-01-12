@@ -12,12 +12,14 @@ namespace SkillsCore.Domain.Models
 
         public Language() { }
 
-        public Language(string languageName, ELanguageLevel languageUnderstanding, ELanguageLevel languageWriting, ELanguageLevel languageSpeaking)
+        public Language(string languageName, ELanguageLevel languageUnderstanding, ELanguageLevel languageWriting, ELanguageLevel languageSpeaking,
+            Guid idUser)
         {
             LanguageName = languageName;
             LanguageUnderstanding = languageUnderstanding;
             LanguageWriting = languageWriting;
             LanguageSpeaking = languageSpeaking;
+            IdUser = idUser;
         }
 
         #endregion
@@ -28,8 +30,9 @@ namespace SkillsCore.Domain.Models
         public ELanguageLevel LanguageUnderstanding { get; private set; }
         public ELanguageLevel LanguageWriting { get; private set; }
         public ELanguageLevel LanguageSpeaking { get; private set; }
+        public Guid IdUser { get; private set; }
 
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual User User { get; set; }
 
         #endregion
 

@@ -1,7 +1,5 @@
 ﻿using SkillsCore.Shared.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SkillsCore.Domain.Models
 {
@@ -11,12 +9,14 @@ namespace SkillsCore.Domain.Models
 
         AcademicFormation() { }
 
-        public AcademicFormation(string instituitionName, DateTime conclusionDate, string courseTitle, string finalPaperTitle)
+        public AcademicFormation(string instituitionName, DateTime conclusionDate, string courseTitle, string finalPaperTitle,
+            Guid idUser)
         {
             InstituitionName = instituitionName;
             ConclusionDate = conclusionDate;
             CourseTitle = courseTitle;
             FinalPaperTitle = finalPaperTitle;
+            IdUser = idUser;
         }
 
         #endregion
@@ -27,8 +27,9 @@ namespace SkillsCore.Domain.Models
         public DateTime ConclusionDate { get; private set; }
         public string CourseTitle { get; private set; }
         public string FinalPaperTitle { get; private set; }
+        public Guid IdUser { get; private set; }
 
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual User User { get; set; }
 
         #endregion
 

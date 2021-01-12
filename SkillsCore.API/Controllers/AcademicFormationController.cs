@@ -81,7 +81,7 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("updateAcademicFormation", Name = "UpdateAademicFormation")]
+        [HttpPut("updateAcademicFormation", Name = "UpdateAademicFormation")]
         public IActionResult UpdateAcademicFormation([FromBody] UpdateListAcademicFormationCommand updateFormation)
         {
             var result = _academicFormationServices.UpdateAcademicFormation(updateFormation);

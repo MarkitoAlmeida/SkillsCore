@@ -107,7 +107,7 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("updateUser", Name = "UpdateUser")]
+        [HttpPut("updateUser", Name = "UpdateUser")]
         public IActionResult CreateUser([FromBody] UpdateUserCommand updateUser)
         {
             var result = _userServices.UpdateUser(updateUser);

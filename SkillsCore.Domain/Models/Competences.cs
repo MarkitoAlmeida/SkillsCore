@@ -1,5 +1,6 @@
 ﻿using SkillsCore.Domain.Enums;
 using SkillsCore.Shared.Models;
+using System;
 using System.Collections.Generic;
 
 namespace SkillsCore.Domain.Models
@@ -10,6 +11,14 @@ namespace SkillsCore.Domain.Models
 
         public Competences() { }
 
+        public Competences(string competenceName, int competenceExperienceTime, ETimeType timeType, Guid idUser)
+        {
+            CompetenceName = competenceName;
+            CompetenceExperienceTime = competenceExperienceTime;
+            TimeType = timeType;
+            IdUser = idUser;
+        }
+
         #endregion
 
         #region Properties
@@ -17,8 +26,9 @@ namespace SkillsCore.Domain.Models
         public string CompetenceName { get; private set; }
         public int CompetenceExperienceTime { get; private set; }
         public ETimeType TimeType { get; private set; }
+        public Guid IdUser { get; private set; }
 
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual User User { get; set; }
 
         #endregion
 

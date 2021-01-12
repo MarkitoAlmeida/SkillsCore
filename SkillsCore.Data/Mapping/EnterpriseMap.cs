@@ -46,6 +46,9 @@ namespace SkillsCore.Data.Mapping
                 .HasMaxLength(100)
                 .HasColumnType("varchar(100)");
 
+            builder.HasMany<User>(x => x.Users)
+                .WithOne(x => x.Enterprise);
+
             builder.Property(x => x.Active)
                 .IsRequired()
                 .HasColumnType("bit");
