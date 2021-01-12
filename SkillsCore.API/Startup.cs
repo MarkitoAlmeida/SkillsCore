@@ -35,7 +35,8 @@ namespace SkillsCore.API
                 .AddControllers(options => options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>())
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-            services.AddScoped<SkillsContext, SkillsContext>();
+            //services.AddDbContext<SkillsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SkillsDB")));
+            services.AddTransient<SkillsContext, SkillsContext>();
 
             services.AddHttpContextAccessor();
             services.AddAutoMapperSetup();

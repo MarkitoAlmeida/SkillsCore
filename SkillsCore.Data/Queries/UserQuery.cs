@@ -16,7 +16,6 @@ namespace SkillsCore.Data.Queries
 
         #endregion
 
-
         #region Constructor
 
         public UserQuery() =>

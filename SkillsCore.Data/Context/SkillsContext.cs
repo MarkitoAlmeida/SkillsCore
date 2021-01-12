@@ -7,16 +7,20 @@ namespace SkillsCore.Data.Context
 {
     public class SkillsContext : DbContext
     {
-        public SkillsContext(DbContextOptions options) : base(options) { }
+        public SkillsContext(DbContextOptions<SkillsContext> options) : base(options) { }
         public SkillsContext() { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Enterprise> Enterprises { get; set; }
         public DbSet<AcademicFormation> AcademicFormations { get; set; }
+        public DbSet<AdministrationType> AdministrationTypes { get; set; }
+        public DbSet<Competences> Competences { get; set; }
+        public DbSet<JobExperience> JobExperiences { get; set; }
+        public DbSet<Language> Languages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost,1433;Database=skillscore;User ID=;Password=");
+            optionsBuilder.UseSqlServer(@"Server=host.docker.internal;Database=skillscore;User ID =SA; Password=P@ssw0rd!");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +30,10 @@ namespace SkillsCore.Data.Context
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new EnterpriseMap());
             modelBuilder.ApplyConfiguration(new AcademicFormationMap());
+            modelBuilder.ApplyConfiguration(new AdministrationTypeMap());
+            modelBuilder.ApplyConfiguration(new CompetencesMap());
+            modelBuilder.ApplyConfiguration(new JobExperienceMap());
+            modelBuilder.ApplyConfiguration(new LanguageMap());
 
             base.OnModelCreating(modelBuilder);
         }

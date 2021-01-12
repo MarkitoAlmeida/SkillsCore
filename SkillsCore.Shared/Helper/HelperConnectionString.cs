@@ -2,6 +2,6 @@
 {
     public class HelperConnectionString
     {
-        public static string connectionString = "Server=localhost,1433;Database=skillscore;User ID =; Password=";
+        public static string connectionString = "Server=host.docker.internal;Database=skillscore;User ID =SA; Password=P@ssw0rd!";
     }
 }

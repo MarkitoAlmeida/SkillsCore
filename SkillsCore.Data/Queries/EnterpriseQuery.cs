@@ -5,7 +5,6 @@ using SkillsCore.Application.ViewModels.EnterpriseViewModels;
 using SkillsCore.Shared.Helper;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SkillsCore.Data.Queries
 {
@@ -66,6 +65,7 @@ namespace SkillsCore.Data.Queries
 
         public EnterpriseViewModel GetEnterpriseById(Guid enterpriseId) =>
             sqlConnection.QueryFirstOrDefault(QueryGetEnterpriseById(), new { enterpriseId });
+
         #endregion
     }
 }
