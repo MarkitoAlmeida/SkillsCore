@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using SkillsCore.Application.Commands.UserCommands;
 using SkillsCore.Application.Interfaces.Queries;
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels;
 using SkillsCore.Application.ViewModels.UserViewModel;
-using SkillsCore.Application.ViewModels.UserViewModels;
 using SkillsCore.Domain.Models;
 using System.Collections.Generic;
 
@@ -47,7 +47,7 @@ namespace SkillsCore.Application.Services
             return data;
         }
 
-        public ResultViewModel CreateUser(CreateUserViewModel createUser)
+        public ResultViewModel CreateUser(CreateUserCommand createUser)
         {
             createUser.Validate();
             if (createUser.Invalid)
@@ -98,7 +98,7 @@ namespace SkillsCore.Application.Services
             };
         }
 
-        public ResultViewModel UpdateUser(UpdateUserViewModel updateUser)
+        public ResultViewModel UpdateUser(UpdateUserCommand updateUser)
         {
             User user = _mapper.Map<User>(_userQuery.GetUserById(updateUser.Id));
 

@@ -28,13 +28,19 @@ namespace SkillsCore.Domain.Models
         public string CourseTitle { get; private set; }
         public string FinalPaperTitle { get; private set; }
 
-        public virtual IEnumerable<User> Skills { get; set; }
+        public virtual IEnumerable<User> Users { get; set; }
 
         #endregion
 
         #region Methods
 
-
+        public void UpdateFields(AcademicFormation fields) 
+        {
+            InstituitionName = fields.InstituitionName;
+            ConclusionDate = fields.ConclusionDate;
+            CourseTitle = fields.CourseTitle;
+            FinalPaperTitle = fields.FinalPaperTitle;
+        }
 
         #endregion
     }

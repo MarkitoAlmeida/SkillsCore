@@ -1,18 +1,19 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
+using System;
 
-namespace SkillsCore.Application.ViewModels.EnterpriseViewModels
+namespace SkillsCore.Application.Commands.EnterpriseCommands
 {
-    public class CreateEnterpriseViewModel : Notifiable, IValidatable
+    public class UpdateEnterpriseCommand : Notifiable, IValidatable
     {
         #region Properties
 
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public int FiscalNr { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Street { get; set; }
-        public string StateProvince { get; set; }
+        public string StateProvice { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
 
@@ -27,13 +28,11 @@ namespace SkillsCore.Application.ViewModels.EnterpriseViewModels
                     .Requires()
                     .HasMaxLen(Name, 150, "Nome", "O nome do usuário deve conter no máximo 150 caracteres.")
                     .HasMinLen(Name, 1, "Nome", "O nome do usuário deve conter no mínimo 1 caracter")
-                    .IsNotNull(FiscalNr, "FiscalNr", "O campo 'Fiscal Number' não pode estar vazio.")
                     .IsNotNull(Email, "Email", "O campo 'Email' não pode estar vazio.")
                     .IsNotNull(Phone, "Phone", "O campo 'Phone' não pode estar vazio.")
                     .IsNotNull(Street, "Street", "O campo 'Street' não pode estar vazio.")
-                    .IsNotNull(StateProvince, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
+                    .IsNotNull(StateProvice, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
                     .IsNotNull(City, "StateProvice", "O campo 'City' não pode estar vazio.")
-                    .IsNotNull(Country, "StateProvice", "O campo 'City' não pode estar vazio.")
             );
         }
 

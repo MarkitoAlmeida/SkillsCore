@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillsCore.Application.Commands.EnterpriseCommands;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels;
-using SkillsCore.Application.ViewModels.EnterpriseViewModels;
 
 namespace SkillsCore.API.Controllers
 {
@@ -61,7 +61,7 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("createEnterprises", Name = "CreateEnterprise")]
-        public IActionResult GetEnterprises([FromBody] CreateEnterpriseViewModel createEnterprise)
+        public IActionResult GetEnterprises([FromBody] CreateEnterpriseCommand createEnterprise)
         {
             var result = _enterpriseService.CreateEnterprise(createEnterprise);
 
@@ -78,7 +78,7 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("updateEnterprises", Name = "UpdateEnterprise")]
-        public IActionResult UpdateEnterprises([FromBody] UpdateEnterpriseViewModel updateEnterprise)
+        public IActionResult UpdateEnterprises([FromBody] UpdateEnterpriseCommand updateEnterprise)
         {
             var result = _enterpriseService.UpdateEnterprise(updateEnterprise);
 

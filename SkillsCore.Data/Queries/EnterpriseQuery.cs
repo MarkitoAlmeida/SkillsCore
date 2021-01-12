@@ -64,7 +64,7 @@ namespace SkillsCore.Data.Queries
         public EnterpriseViewModel GetEnterpriseByFiscalNr(int fiscalNr) =>
             sqlConnection.QueryFirstOrDefault(QueryGetEnterpriseByFiscalNr(), new { fiscalNr });
 
-        public EnterpriseViewModel GetEnterpriseByFiscalNr(Guid enterpriseId) =>
+        public EnterpriseViewModel GetEnterpriseById(Guid enterpriseId) =>
             sqlConnection.QueryFirstOrDefault(QueryGetEnterpriseById(), new { enterpriseId });
         #endregion
     }

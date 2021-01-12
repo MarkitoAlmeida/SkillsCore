@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SkillsCore.Application.Commands.EnterpriseCommands;
 using SkillsCore.Application.Interfaces.Queries;
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Application.Interfaces.Services;
@@ -39,7 +40,7 @@ namespace SkillsCore.Application.Services
             return data;
         }
 
-        public ResultViewModel CreateEnterprise(CreateEnterpriseViewModel createEnterprise)
+        public ResultViewModel CreateEnterprise(CreateEnterpriseCommand createEnterprise)
         {
             createEnterprise.Validate();
             if (createEnterprise.Invalid)
@@ -84,7 +85,7 @@ namespace SkillsCore.Application.Services
             };
         }
 
-        public ResultViewModel UpdateEnterprise(UpdateEnterpriseViewModel updateEnterprise)
+        public ResultViewModel UpdateEnterprise(UpdateEnterpriseCommand updateEnterprise)
         {
             Enterprise enterprise = _mapper.Map<Enterprise>(_enterpriseQuery.GetEnterpriseById(updateEnterprise.Id));
 

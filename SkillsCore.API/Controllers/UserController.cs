@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillsCore.Application.Commands.UserCommands;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels;
-using SkillsCore.Application.ViewModels.UserViewModels;
 
 namespace SkillsCore.API.Controllers
 {
@@ -91,7 +91,7 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("createUser", Name = "CreateUser")]
-        public IActionResult CreateUser([FromBody] CreateUserViewModel createUser)
+        public IActionResult CreateUser([FromBody] CreateUserCommand createUser)
         {
             var result = _userServices.CreateUser(createUser);
 
@@ -108,7 +108,7 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("updateUser", Name = "UpdateUser")]
-        public IActionResult CreateUser([FromBody] UpdateUserViewModel updateUser)
+        public IActionResult CreateUser([FromBody] UpdateUserCommand updateUser)
         {
             var result = _userServices.UpdateUser(updateUser);
 

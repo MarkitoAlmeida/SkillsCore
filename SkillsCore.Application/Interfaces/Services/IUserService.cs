@@ -1,6 +1,6 @@
-﻿using SkillsCore.Application.ViewModels;
+﻿using SkillsCore.Application.Commands.UserCommands;
+using SkillsCore.Application.ViewModels;
 using SkillsCore.Application.ViewModels.UserViewModel;
-using SkillsCore.Application.ViewModels.UserViewModels;
 using System.Collections.Generic;
 
 namespace SkillsCore.Application.Interfaces.Services
@@ -9,7 +9,7 @@ namespace SkillsCore.Application.Interfaces.Services
     {
         IEnumerable<UserViewModel> GetUsers();
         UserViewModel GetUserByFiscalNr(int fiscalNr);
-        ResultViewModel CreateUser(CreateUserViewModel createUser);
-        ResultViewModel UpdateUser(UpdateUserViewModel updateUser);
+        ResultViewModel CreateUser(CreateUserCommand createUser);
+        ResultViewModel UpdateUser(UpdateUserCommand updateUser);
     }
 }

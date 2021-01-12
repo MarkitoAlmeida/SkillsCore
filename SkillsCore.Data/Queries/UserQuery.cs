@@ -2,7 +2,6 @@
 using Microsoft.Data.SqlClient;
 using SkillsCore.Application.Interfaces.Queries;
 using SkillsCore.Application.ViewModels.UserViewModel;
-using SkillsCore.Application.ViewModels.UserViewModels;
 using SkillsCore.Shared.Helper;
 using System;
 using System.Collections.Generic;
@@ -65,8 +64,8 @@ namespace SkillsCore.Data.Queries
         public UserViewModel GetUserByFiscalNr(int fiscalNr) =>
             sqlConnection.QueryFirstOrDefault<UserViewModel>(QueryGetUserByFiscalNr(), new { fiscalNr });
 
-        public UpdateUserViewModel GetUserById(Guid id) =>
-            sqlConnection.QueryFirstOrDefault<UpdateUserViewModel>(QuertGetUserById(), new { id });
+        public UserViewModel GetUserById(Guid id) =>
+            sqlConnection.QueryFirstOrDefault<UserViewModel>(QuertGetUserById(), new { id });
 
 
         #endregion

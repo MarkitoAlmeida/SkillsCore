@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCore.Data", "SkillsCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCore.Application", "SkillsCore.Application\SkillsCore.Application.csproj", "{8EE62CFF-1C9D-4FC7-9DC6-A923DF339B30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillsCore.Shared", "SkillsCore.Shared\SkillsCore.Shared.csproj", "{733B092E-7FF8-4314-BAC9-A039784CC8A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillsCore.Shared", "SkillsCore.Shared\SkillsCore.Shared.csproj", "{733B092E-7FF8-4314-BAC9-A039784CC8A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{20C665C5-868F-433C-8ED3-D17F4DD55268}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

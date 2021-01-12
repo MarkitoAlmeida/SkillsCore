@@ -12,6 +12,7 @@ namespace SkillsCore.Data.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Enterprise> Enterprises { get; set; }
+        public DbSet<AcademicFormation> AcademicFormations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,6 +25,7 @@ namespace SkillsCore.Data.Context
 
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new EnterpriseMap());
+            modelBuilder.ApplyConfiguration(new AcademicFormationMap());
 
             base.OnModelCreating(modelBuilder);
         }
