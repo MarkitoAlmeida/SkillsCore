@@ -1,8 +1,9 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SkillsCore.Application.Interfaces.Queries;
 using SkillsCore.Application.ViewModels.UserViewModel;
-using SkillsCore.Shared.Helper;
+using SkillsCore.Data.Context;
 using System;
 using System.Collections.Generic;
 
@@ -18,8 +19,8 @@ namespace SkillsCore.Data.Queries
 
         #region Constructor
 
-        public UserQuery() =>
-            sqlConnection = new SqlConnection(HelperConnectionString.connectionString);
+        public UserQuery(SkillsContext context) =>
+            sqlConnection = new SqlConnection(context.Database.GetConnectionString());
 
         #endregion
 

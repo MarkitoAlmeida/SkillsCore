@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SkillsCore.API.Configurations;
 using SkillsCore.API.Helpers;
 using SkillsCore.Data.Context;
 using System.Text.Json.Serialization;
@@ -35,7 +37,7 @@ namespace SkillsCore.API
                 .AddControllers(options => options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>())
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
-            //services.AddDbContext<SkillsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SkillsDB")));
+            services.AddDbContext<SkillsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SkillsDB")));
             services.AddTransient<SkillsContext, SkillsContext>();
 
             services.AddHttpContextAccessor();
@@ -48,7 +50,10 @@ namespace SkillsCore.API
 
             services.AddResponseCompression();
 
-            AddDependencyInjection(services);
+            //AddDependencyInjection(services);
+            services.AddQueryConfiguration();
+            services.AddRepositoryConfiguration();
+            services.AddServiceConfiguration();
 
             services.AddMvc(); //Middleware
         }
@@ -82,9 +87,9 @@ namespace SkillsCore.API
             });
         }
 
-        public void AddDependencyInjection(IServiceCollection services)
-        {
-            DependencyInjection.RegisterDependencyInjection(services);
-        }
+        //public void AddDependencyInjection(IServiceCollection services)
+        //{
+        //    DependencyInjection.RegisterDependencyInjection(services);
+        //}
     }
 }

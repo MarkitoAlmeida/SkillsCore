@@ -12,7 +12,7 @@ namespace SkillsCore.Domain.Models
         public User() { }
 
         public User(string name, string lastName, int fiscalNr, string email, string password, DateTime birthDay, EGender gender,
-            string phone, string street, string stateProvince, string city, string country, string cityOfBirth, string experienceTime,
+            string phone, string street, string stateProvince, string city, string country, string cityOfBirth, int experienceTime,
             string summary, Guid idAdministrationType, Guid idEnterprise)
         {
             Name = name;
@@ -51,7 +51,7 @@ namespace SkillsCore.Domain.Models
         public string City { get; private set; }
         public string Country { get; private set; }
         public string CityOfBirth { get; private set; }
-        public string ExperienceTime { get; private set; }
+        public int ExperienceTime { get; private set; }
         public string Summary { get; private set; }
         public Guid IdAdministrationType { get; private set; }
         public Guid IdEnterprise { get; private set; }

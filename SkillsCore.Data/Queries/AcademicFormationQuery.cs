@@ -1,11 +1,11 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using SkillsCore.Application.Interfaces.Queries;
 using SkillsCore.Application.ViewModels.AcademicFormationViewModels;
-using SkillsCore.Shared.Helper;
+using SkillsCore.Data.Context;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SkillsCore.Data.Queries
 {
@@ -19,8 +19,8 @@ namespace SkillsCore.Data.Queries
 
         #region Constructor
 
-        public AcademicFormationQuery() =>
-            sqlConnection = new SqlConnection(HelperConnectionString.connectionString);
+        public AcademicFormationQuery(SkillsContext context) =>
+            sqlConnection = new SqlConnection(context.Database.GetConnectionString());
 
         #endregion
 

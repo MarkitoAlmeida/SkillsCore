@@ -67,7 +67,6 @@ namespace SkillsCore.Data.Mapping
 
             builder.Property(x => x.ExperienceTime)
                 .IsRequired()
-                .HasMaxLength(100)
                 .HasColumnType("int");
 
             builder.Property(x => x.Summary)

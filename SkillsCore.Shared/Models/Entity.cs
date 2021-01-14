@@ -2,7 +2,7 @@
 
 namespace SkillsCore.Shared.Models
 {
-    public class Entity
+    public abstract class Entity
     {
         #region Constructor
 
