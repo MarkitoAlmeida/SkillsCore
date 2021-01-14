@@ -19,10 +19,8 @@ namespace SkillsCore.Data.Queries
 
         #region Constructor
 
-        public UserQuery(SkillsContext context)
-        {
+        public UserQuery(SkillsContext context) =>
             _context = context;
-        }
 
         #endregion
 

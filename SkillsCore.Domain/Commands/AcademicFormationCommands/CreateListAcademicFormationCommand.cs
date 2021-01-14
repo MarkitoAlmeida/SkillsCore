@@ -1,9 +1,10 @@
-﻿using System;
+﻿using SkillsCore.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace SkillsCore.Application.Commands.AcademicFormationCommands
 { 
-    public class CreateListAcademicFormationCommand
+    public class CreateListAcademicFormationCommand : ICommand
     {
         public Guid IdUser { get; set; }
         public List<CreateAcademicFormationCommand> AcademicFormations { get; set; }

@@ -61,7 +61,7 @@ namespace SkillsCore.Application.Services
             var userExists = _userRepository.Get(createUser.FiscalNr);
             if (userExists != null)
                 return new ResultViewModel
-                { 
+                {
                     Success = false,
                     Message = "User already exists.",
                     Data = userExists

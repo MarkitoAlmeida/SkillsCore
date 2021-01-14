@@ -1,10 +1,11 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
+using SkillsCore.Domain.Interfaces;
 using System;
 
 namespace SkillsCore.Application.Commands.AcademicFormationCommands
 {
-    public class CreateAcademicFormationCommand : Notifiable, IValidatable
+    public class UpdateAcademicFormationCommand : Notifiable, IValidatable, ICommand
     {
         public Guid Id { get; set; }
         public string InstituitionName { get; set; }

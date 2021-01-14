@@ -1,11 +1,12 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
+using SkillsCore.Domain.Interfaces;
 using SkillsCore.Domain.Enums;
 using System;
 
 namespace SkillsCore.Application.Commands.UserCommands
 {
-    public class CreateUserCommand : Notifiable, IValidatable
+    public class CreateUserCommand : Notifiable, IValidatable, ICommand
     {
         #region Properties
 

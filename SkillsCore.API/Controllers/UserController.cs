@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using SkillsCore.Application.Commands.UserCommands;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels;
+using System.Threading.Tasks;
 
 namespace SkillsCore.API.Controllers
 {
@@ -11,15 +13,18 @@ namespace SkillsCore.API.Controllers
     {
         #region Properties
 
-        public readonly IUserService _userServices;
+        private readonly IUserService _userServices;
+        private readonly IMediator _mediator; 
 
         #endregion
 
         #region Constructor
 
-        public UserController(IUserService userServices) =>
+        public UserController(IUserService userServices,IMediator mediator)
+        {
             _userServices = userServices;
-
+            _mediator = mediator;
+        }
         #endregion
 
         #region Get
@@ -91,11 +96,15 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("createUser", Name = "CreateUser")]
-        public IActionResult CreateUser([FromBody] CreateUserCommand createUser)
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand createUser)
         {
-            var result = _userServices.CreateUser(createUser);
+            //var result = _userServices.CreateUser(createUser);
 
-            return result.Success ? new ObjectResult(result) : BadRequest(result);
+            var result = await _mediator.Send(createUser);
+
+            return Ok(result);
+
+            //return result.Success ? new OkbjectResult(result) : BadRequest(result);
         }
 
         #endregion

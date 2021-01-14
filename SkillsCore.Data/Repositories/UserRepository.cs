@@ -2,6 +2,7 @@
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Data.Context;
 using SkillsCore.Domain.Models;
+using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Repositories
 {
@@ -17,10 +18,10 @@ namespace SkillsCore.Data.Repositories
             return _context.Users.Find(fiscalNr);
         }
 
-        public void Insert(User user)
+        public async Task Insert(User user)
         {
             _context.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public void Update(User user)
