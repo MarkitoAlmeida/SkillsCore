@@ -18,11 +18,6 @@ namespace SkillsCore.Data.Context
         public DbSet<JobExperience> JobExperiences { get; set; }
         public DbSet<Language> Languages { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=host.docker.internal;Database=skillscore;User ID =SA; Password=P@ssw0rd!");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<Notification>();
