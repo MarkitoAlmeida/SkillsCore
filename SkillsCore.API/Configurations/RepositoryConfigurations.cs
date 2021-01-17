@@ -9,8 +9,6 @@ namespace SkillsCore.API.Configurations
     {
         public static IServiceCollection AddRepositoryConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IRepository<Entity>, Repository<Entity>>();
-
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
             services.AddScoped<IAcademicFormationRepository, AcademicFormationRepository>();

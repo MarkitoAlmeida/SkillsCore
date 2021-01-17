@@ -1,28 +1,29 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SkillsCore.Application.Commands.UserCommands;
-using SkillsCore.Application.Interfaces.Services;
-using SkillsCore.Application.ViewModels;
+using SkillsCore.Application.Interfaces.Queries;
+using SkillsCore.Domain.Commands.UserCommands;
+using SkillsCore.Domain.Models.Response;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillsCore.API.Controllers
 {
     [ApiController]
-    [Route("controller")]
+    [Route("User")]
     public class UserController : ControllerBase
     {
         #region Properties
 
-        private readonly IUserService _userServices;
+        private readonly IUserQuery _userQuery;
         private readonly IMediator _mediator; 
 
         #endregion
 
         #region Constructor
 
-        public UserController(IUserService userServices,IMediator mediator)
+        public UserController(IUserQuery userQuery, IMediator mediator)
         {
-            _userServices = userServices;
+            _userQuery = userQuery;
             _mediator = mediator;
         }
         #endregion
@@ -35,27 +36,14 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet("getUsers", Name = "GetAllUsers")]
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers()
         {
-            var result = _userServices.GetUsers();
+            var result = await _userQuery.GetAllUsers();
 
-            if (result == null)
-                return BadRequest(
-                    new ResultViewModel
-                    {
-                        Success = false,
-                        Message = "Users not found",
-                        Data = null
-                    }
-                );
+            if (result.Count() == 0)
+                return BadRequest(new ResponseApi(false, "Users not found", null));
 
-            return new OkObjectResult(
-                new ResultViewModel
-                {
-                    Success = true,
-                    Message = "Users retrieved successul.",
-                    Data = result
-                });
+            return new OkObjectResult(new ResponseApi(true, "Users retrieved successul.", result));
         }
 
         /// <summary>
@@ -63,27 +51,15 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpGet("getUser", Name = "GetUserByFiscalNr")]
-        public IActionResult GetUserByFiscalNr([FromBody] int fiscalNr)
+        [HttpGet("getUser/{fiscalNr}", Name = "GetUserByFiscalNr")]
+        public async Task<IActionResult> GetUserByFiscalNr([FromRoute] int fiscalNr)
         {
-            var result = _userServices.GetUserByFiscalNr(fiscalNr);
+            var result = await _userQuery.GetUserByFiscalNr(fiscalNr);
 
             if (result == null)
-                return BadRequest(
-                    new ResultViewModel
-                    {
-                        Success = false,
-                        Message = "User not found.",
-                        Data = result
-                    });
+                return BadRequest(new ResponseApi(false, "User not found", null));
 
-            return new OkObjectResult(
-                new ResultViewModel
-                {
-                    Success = true,
-                    Message = "User retrieved successul.",
-                    Data = result
-                });
+            return new OkObjectResult(new ResponseApi(true, "User retrieved successul.", result));
         }
 
         #endregion
@@ -98,13 +74,9 @@ namespace SkillsCore.API.Controllers
         [HttpPost("createUser", Name = "CreateUser")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand createUser)
         {
-            //var result = _userServices.CreateUser(createUser);
-
             var result = await _mediator.Send(createUser);
 
             return Ok(result);
-
-            //return result.Success ? new OkbjectResult(result) : BadRequest(result);
         }
 
         #endregion
@@ -117,11 +89,11 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("updateUser", Name = "UpdateUser")]
-        public IActionResult CreateUser([FromBody] UpdateUserCommand updateUser)
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand updateUser)
         {
-            var result = _userServices.UpdateUser(updateUser);
+            var result = await _mediator.Send(updateUser);
 
-            return result.Success ? new ObjectResult(result) : BadRequest(result);
+            return Ok(result);
         }
 
         #endregion

@@ -3,7 +3,7 @@ using Flunt.Validations;
 using SkillsCore.Domain.Interfaces;
 using System;
 
-namespace SkillsCore.Application.Commands.EnterpriseCommands
+namespace SkillsCore.Domain.Commands.EnterpriseCommands
 {
     public class UpdateEnterpriseCommand : Notifiable, IValidatable, ICommand
     {
@@ -14,7 +14,7 @@ namespace SkillsCore.Application.Commands.EnterpriseCommands
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Street { get; set; }
-        public string StateProvice { get; set; }
+        public string StateProvince { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
 
@@ -32,7 +32,7 @@ namespace SkillsCore.Application.Commands.EnterpriseCommands
                     .IsNotNull(Email, "Email", "O campo 'Email' não pode estar vazio.")
                     .IsNotNull(Phone, "Phone", "O campo 'Phone' não pode estar vazio.")
                     .IsNotNull(Street, "Street", "O campo 'Street' não pode estar vazio.")
-                    .IsNotNull(StateProvice, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
+                    .IsNotNull(StateProvince, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
                     .IsNotNull(City, "StateProvice", "O campo 'City' não pode estar vazio.")
             );
         }

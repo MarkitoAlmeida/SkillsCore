@@ -2,6 +2,8 @@
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Data.Context;
 using SkillsCore.Domain.Models;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Repositories
@@ -13,9 +15,14 @@ namespace SkillsCore.Data.Repositories
         public UserRepository(SkillsContext context) =>
             _context = context;
 
-        public User Get(int fiscalNr)
+        public async Task<User> GetUserByFiscalNr(int fiscalNr)
         {
-            return _context.Users.Find(fiscalNr);
+            return await _context.Users.Where(x => x.FiscalNr == fiscalNr).FirstAsync();
+        }
+
+        public async Task<User> Get(Guid id)
+        {
+            return await _context.Users.FindAsync(id);
         }
 
         public async Task Insert(User user)
@@ -24,10 +31,10 @@ namespace SkillsCore.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public void Update(User user)
+        public async Task Update(User user)
         {
             _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

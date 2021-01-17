@@ -1,13 +1,15 @@
 ﻿
 using SkillsCore.Domain.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace SkillsCore.Application.Interfaces.Repositories
 {
     public interface IUserRepository
     {
-        User Get(int fiscalNr);
+        Task<User> GetUserByFiscalNr(int fiscalNr);
+        Task<User> Get(Guid id);
         Task Insert(User user);
-        void Update(User user);
+        Task Update(User user);
     }
 }

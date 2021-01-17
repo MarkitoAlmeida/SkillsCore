@@ -1,22 +1,31 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SkillsCore.Application.Commands.EnterpriseCommands;
-using SkillsCore.Application.Interfaces.Services;
-using SkillsCore.Application.ViewModels;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using SkillsCore.Application.Interfaces.Queries;
+using SkillsCore.Domain.Commands.EnterpriseCommands;
+using SkillsCore.Domain.Models.Response;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SkillsCore.API.Controllers
 {
+    [ApiController]
+    [Route("Enterprise")]
     public class EnterpriseController : ControllerBase
     {
         #region Properties
 
-        public readonly IEnterpriseService _enterpriseService;
+        public readonly IEnterpriseQuery _enterpriseQuery;
+        public readonly IMediator _mediator;
 
         #endregion
 
         #region Constructor
 
-        public EnterpriseController(IEnterpriseService enterpriseService) =>
-            _enterpriseService = enterpriseService;
+        public EnterpriseController(IEnterpriseQuery enterpriseQuery, IMediator mediator)
+        {
+            _enterpriseQuery = enterpriseQuery;
+            _mediator = mediator;
+        }   
 
         #endregion
 
@@ -28,27 +37,14 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpGet("getEnterprises", Name = "GetAllEnterprise")]
-        public IActionResult GetEnterprises()
+        public async Task<IActionResult> GetEnterprises()
         {
-            var result = _enterpriseService.GetEnterprises();
+            var result = await _enterpriseQuery.GetAllEnterprises();
 
-            if (result == null)
-                return BadRequest(
-                    new ResultViewModel
-                    {
-                        Success = false,
-                        Message = "Enterprises not found",
-                        Data = null
-                    }
-                );
+            if (result.Count() == 0)
+                return BadRequest(new ResponseApi(false, "Enterprises not found", null));
 
-            return new OkObjectResult(
-                new ResultViewModel
-                {
-                    Success = true,
-                    Message = "Enterprises retrieved successul.",
-                    Data = result
-                });
+            return new OkObjectResult(new ResponseApi(true, "Enterprises retrieved successul.", result));
         }
 
         #endregion
@@ -61,11 +57,11 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPost("createEnterprises", Name = "CreateEnterprise")]
-        public IActionResult GetEnterprises([FromBody] CreateEnterpriseCommand createEnterprise)
+        public async Task<IActionResult> GetEnterprises([FromBody] CreateEnterpriseCommand createEnterprise)
         {
-            var result = _enterpriseService.CreateEnterprise(createEnterprise);
+            var result = await _mediator.Send(createEnterprise);
 
-            return result.Success ? new ObjectResult(result) : BadRequest(result);
+            return Ok(result);
         }
 
         #endregion
@@ -78,18 +74,29 @@ namespace SkillsCore.API.Controllers
         /// <param name="request"></param>
         /// <returns></returns>
         [HttpPut("updateEnterprises", Name = "UpdateEnterprise")]
-        public IActionResult UpdateEnterprises([FromBody] UpdateEnterpriseCommand updateEnterprise)
+        public async Task<IActionResult> UpdateEnterprises([FromBody] UpdateEnterpriseCommand updateEnterprise)
         {
-            var result = _enterpriseService.UpdateEnterprise(updateEnterprise);
+            var result = await _mediator.Send(updateEnterprise);
 
-            return result.Success ? new ObjectResult(result) : BadRequest(result);
+            return Ok(result);
         }
 
         #endregion
 
         #region Delete
 
+        /// <summary>
+        /// Remove (logicamente) uma empresa
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPut("deleteEnterprises/{idEnterprise}", Name = "DeleteEnterprise")]
+        public async Task<IActionResult> DeleteEnterprises([FromRoute] DeleteEnterpriseCommand deleteEnterprise)
+        {
+            var result = await _mediator.Send(deleteEnterprise);
 
+            return Ok(result);
+        }
 
         #endregion
 

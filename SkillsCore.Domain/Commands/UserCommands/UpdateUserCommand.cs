@@ -4,7 +4,7 @@ using SkillsCore.Domain.Interfaces;
 using SkillsCore.Domain.Enums;
 using System;
 
-namespace SkillsCore.Application.Commands.UserCommands
+namespace SkillsCore.Domain.Commands.UserCommands
 {
     public class UpdateUserCommand : Notifiable, IValidatable, ICommand
     {
@@ -15,10 +15,10 @@ namespace SkillsCore.Application.Commands.UserCommands
         public EGender Gender { get; set; }
         public string Phone { get; set; }
         public string Street { get; set; }
-        public string StateProvice { get; set; }
+        public string StateProvince { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public string ExperienceTime { get; set; }
+        public int ExperienceTime { get; set; }
         public string Summary { get; set; }
 
         #region Methods
@@ -35,7 +35,7 @@ namespace SkillsCore.Application.Commands.UserCommands
                     .IsNotNull(Email, "Email", "O campo 'Email' não pode estar vazio.")
                     .IsNotNull(Phone, "Phone", "O campo 'Phone' não pode estar vazio.")
                     .IsNotNull(Street, "Street", "O campo 'Street' não pode estar vazio.")
-                    .IsNotNull(StateProvice, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
+                    .IsNotNull(StateProvince, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
                     .IsNotNull(City, "StateProvice", "O campo 'City' não pode estar vazio.")
                     .IsNotNull(ExperienceTime, "ExperienceTime", "O campo 'ExperienceTime' não pode estar vazio.")
                     .IsNotNull(Summary, "ExperienceTime", "O campo 'Summary' não pode estar vazio.")

@@ -3,15 +3,15 @@ using Flunt.Validations;
 using SkillsCore.Domain.Interfaces;
 using System;
 
-namespace SkillsCore.Application.Commands.AcademicFormationCommands
+namespace SkillsCore.Domain.Commands.AcademicFormationCommands
 {
     public class CreateAcademicFormationCommand : Notifiable, IValidatable, ICommand
     {
-        public Guid Id { get; set; }
         public string InstituitionName { get; set; }
         public DateTime ConclusionDate { get; set; }
         public string CourseTitle { get; set; }
         public string FinalPaperTitle { get; set; }
+        public Guid IdUser { get; set; }
 
         public void Validate()
         {

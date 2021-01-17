@@ -2,6 +2,9 @@
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Data.Context;
 using SkillsCore.Domain.Models;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Repositories
 {
@@ -22,21 +25,26 @@ namespace SkillsCore.Data.Repositories
 
         #region Methods
 
-        public Enterprise Get(int fiscalNr)
+        public async Task<Enterprise> Get(Guid id)
         {
-            return _context.Enterprises.Find(fiscalNr);
+            return await _context.Enterprises.FindAsync(id);
+        }
+        
+        public async Task<Enterprise> GetEnterpriseByFiscalNr(int fiscalNr)
+        {
+            return await _context.Enterprises.Where(x => x.FiscalNr == fiscalNr).FirstAsync();
         }
 
-        public void Insert(Enterprise enterprise)
+        public async Task Insert(Enterprise enterprise)
         {
             _context.Add(enterprise);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Enterprise enterprise)
+        public async Task Update(Enterprise enterprise)
         {
             _context.Entry(enterprise).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         #endregion

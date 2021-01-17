@@ -10,8 +10,8 @@ namespace SkillsCore.Application.Mapper
         {
             return new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new DomainToViewModelMap());
-                cfg.AddProfile(new ViewModelToDomainMap());
+                cfg.AddProfile(new DomainToCommandMap());
+                cfg.AddProfile(new CommandToDomainMap());
             });
         }
     }

@@ -2,7 +2,7 @@
 using Flunt.Validations;
 using SkillsCore.Domain.Interfaces;
 
-namespace SkillsCore.Application.Commands.EnterpriseCommands
+namespace SkillsCore.Domain.Commands.EnterpriseCommands
 {
     public class CreateEnterpriseCommand : Notifiable, IValidatable, ICommand
     {

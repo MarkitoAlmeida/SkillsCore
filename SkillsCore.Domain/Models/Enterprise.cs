@@ -54,6 +54,13 @@ namespace SkillsCore.Domain.Models
             LastUpdate = DateTime.UtcNow;
         }
 
+        public void Delete()
+        {
+            Active = false;
+            Excluded = true;
+            LastUpdate = DateTime.UtcNow;
+        }
+
         #endregion
     }
 }

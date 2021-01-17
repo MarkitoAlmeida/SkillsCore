@@ -3,7 +3,7 @@ using Flunt.Validations;
 using SkillsCore.Domain.Interfaces;
 using System;
 
-namespace SkillsCore.Application.Commands.AcademicFormationCommands
+namespace SkillsCore.Domain.Commands.AcademicFormationCommands
 {
     public class UpdateAcademicFormationCommand : Notifiable, IValidatable, ICommand
     {

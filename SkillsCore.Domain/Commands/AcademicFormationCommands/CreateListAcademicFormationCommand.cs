@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SkillsCore.Application.Commands.AcademicFormationCommands
+namespace SkillsCore.Domain.Commands.AcademicFormationCommands
 { 
     public class CreateListAcademicFormationCommand : ICommand
     {

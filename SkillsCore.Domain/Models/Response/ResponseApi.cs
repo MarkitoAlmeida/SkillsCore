@@ -1,4 +1,6 @@
-﻿namespace SkillsCore.Domain.Models.Response
+﻿using System.Collections.Generic;
+
+namespace SkillsCore.Domain.Models.Response
 {
     public class ResponseApi
     {

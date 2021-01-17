@@ -6,6 +6,7 @@ using SkillsCore.Application.ViewModels.AcademicFormationViewModels;
 using SkillsCore.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Queries
 {
@@ -13,6 +14,7 @@ namespace SkillsCore.Data.Queries
     {
         #region Properties
 
+        private readonly SkillsContext _context;
         private readonly SqlConnection sqlConnection;
 
         #endregion
@@ -33,7 +35,7 @@ namespace SkillsCore.Data.Queries
                 FROM
                     AcademicFormation
                 WHERE
-                    UserId = @id
+                    IdUser = @userId
             ";
 
         private string QueryGetAcamicFormationById() =>
@@ -50,11 +52,11 @@ namespace SkillsCore.Data.Queries
 
         #region Methods
 
-        public IEnumerable<AcademicFormationViewModel> GetUserFormationById(Guid id) =>
-            sqlConnection.Query<AcademicFormationViewModel>(QueryGetUserFormationById(), new { id });
+        public async Task<IEnumerable<AcademicFormationViewModel>> GetUserFormationById(Guid userId) =>
+            await sqlConnection.QueryAsync<AcademicFormationViewModel>(QueryGetUserFormationById(), new { userId });
 
-        public AcademicFormationViewModel GetAcamicFormationById(Guid academicFormationId) =>
-            sqlConnection.QueryFirstOrDefault<AcademicFormationViewModel>(QueryGetAcamicFormationById(), new { academicFormationId });
+        public async Task<AcademicFormationViewModel> GetAcamicFormationById(Guid academicFormationId) =>
+            await sqlConnection.QueryFirstOrDefaultAsync<AcademicFormationViewModel>(QueryGetAcamicFormationById(), new { academicFormationId });
 
         #endregion
     }

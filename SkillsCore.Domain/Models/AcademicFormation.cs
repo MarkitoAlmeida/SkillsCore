@@ -41,6 +41,7 @@ namespace SkillsCore.Domain.Models
             ConclusionDate = fields.ConclusionDate;
             CourseTitle = fields.CourseTitle;
             FinalPaperTitle = fields.FinalPaperTitle;
+            LastUpdate = DateTime.UtcNow;
         }
 
         #endregion

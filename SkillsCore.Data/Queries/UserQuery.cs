@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SkillsCore.Application.Interfaces.Queries;
 using SkillsCore.Application.ViewModels.UserViewModel;
@@ -6,6 +7,7 @@ using SkillsCore.Data.Context;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Queries
 {
@@ -14,13 +16,18 @@ namespace SkillsCore.Data.Queries
         #region Properties
 
         private readonly SkillsContext _context;
+        private readonly SqlConnection _sqlConnection;
 
         #endregion
 
         #region Constructor
 
-        public UserQuery(SkillsContext context) =>
+        public UserQuery(SkillsContext context)
+        {
+            _sqlConnection = new SqlConnection(context.Database.GetConnectionString());
             _context = context;
+        }
+
 
         #endregion
 
@@ -31,7 +38,7 @@ namespace SkillsCore.Data.Queries
                 SELECT
                     *
                 FROM
-                    User
+                    [dbo].[User]
             ";
 
         private string QueryGetUserByFiscalNr() =>
@@ -39,9 +46,9 @@ namespace SkillsCore.Data.Queries
                 SELECT
                     *
                 FROM
-                    User
+                    [dbo].[User]
                 WHERE
-                    FicalNr = @FiscalNr
+                    FiscalNr = @FiscalNr
             ";
 
         public string QuertGetUserById() =>
@@ -49,7 +56,7 @@ namespace SkillsCore.Data.Queries
                 SELECT
                     *
                 FROM
-                    User
+                    [dbo].[User]
                 WHERE
                     UserId = @id
             ";
@@ -58,23 +65,14 @@ namespace SkillsCore.Data.Queries
 
         #region Methods
 
-        public IEnumerable<UserViewModel> GetAllUsers()
-        {
-            using IDbConnection conn = _context.Database.GetDbConnection();
-            return conn.Query<UserViewModel>(QueryGetAllUsers());
-        }
+        public async Task<IEnumerable<UserViewModel>> GetAllUsers() =>
+            await _sqlConnection.QueryAsync<UserViewModel>(QueryGetAllUsers());
 
-        public UserViewModel GetUserByFiscalNr(int fiscalNr)
-        {
-            using IDbConnection conn = _context.Database.GetDbConnection();
-            return conn.QueryFirstOrDefault<UserViewModel>(QueryGetUserByFiscalNr(), new { fiscalNr });
-        }
+        public async Task<UserViewModel> GetUserByFiscalNr(int fiscalNr) =>
+            await _sqlConnection.QueryFirstOrDefaultAsync<UserViewModel>(QueryGetUserByFiscalNr(), new { fiscalNr });
 
-        public UserViewModel GetUserById(Guid id)
-        {
-            using IDbConnection conn = _context.Database.GetDbConnection();
-            return conn.QueryFirstOrDefault<UserViewModel>(QuertGetUserById(), new { id });
-        }
+        public async Task<UserViewModel> GetUserById(Guid id) =>
+            await _sqlConnection.QueryFirstOrDefaultAsync<UserViewModel>(QuertGetUserById(), new { id });
 
         #endregion
     }

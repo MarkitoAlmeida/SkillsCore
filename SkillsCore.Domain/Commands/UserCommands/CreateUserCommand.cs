@@ -4,28 +4,29 @@ using SkillsCore.Domain.Interfaces;
 using SkillsCore.Domain.Enums;
 using System;
 
-namespace SkillsCore.Application.Commands.UserCommands
+namespace SkillsCore.Domain.Commands.UserCommands
 {
     public class CreateUserCommand : Notifiable, IValidatable, ICommand
     {
         #region Properties
 
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public int FiscalNr { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public DateTime BirthDay { get; set; }
-        public EGender Gender { get; set; }
-        public string Phone { get; set; }
-        public string Street { get; set; }
-        public string StateProvice { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
-        public string CityOfBirth { get; set; }
-        public string ExperienceTime { get; set; }
-        public string Summary { get; set; }
-        public EAdministrationType AdministrationType { get; set; }
+        public string Name { get;  set; }
+        public string LastName { get;  set; }
+        public int FiscalNr { get;  set; }
+        public string Email { get;  set; }
+        public string Password { get;  set; }
+        public DateTime BirthDay { get;  set; }
+        public EGender Gender { get;  set; }
+        public string Phone { get;  set; }
+        public string Street { get;  set; }
+        public string StateProvince { get;  set; }
+        public string City { get;  set; }
+        public string Country { get;  set; }
+        public string CityOfBirth { get;  set; }
+        public int ExperienceTime { get;  set; }
+        public string Summary { get;  set; }
+        public Guid IdAdministrationType { get;  set; }
+        public Guid IdEnterprise { get;  set; }
 
         #endregion
 
@@ -45,15 +46,15 @@ namespace SkillsCore.Application.Commands.UserCommands
                     .IsNotNull(Password, "Password", "O campo 'Password' não pode estar vazio.")
                     .IsNotNull(BirthDay, "BirthDay", "O campo  'Aniversário' não pode estar vazio.")
                     .IsNotNull(Phone, "Phone", "O campo 'Phone' não pode estar vazio.")
-                    .IsNotNull(AdministrationType, "AdministrationType", "O campo 'Perfil' não pode estar vazio.")
                     .IsNotNull(Street, "Street", "O campo 'Street' não pode estar vazio.")
-                    .IsNotNull(StateProvice, "StateProvice", "O campo 'StateProvice' não pode estar vazio.")
+                    .IsNotNull(StateProvince, "StateProvince", "O campo 'StateProvice' não pode estar vazio.")
                     .IsNotNull(City, "City", "O campo 'City' não pode estar vazio.")
                     .IsNotNull(Country, "Country", "O campo 'Country' não pode estar vazio.")
                     .IsNotNull(CityOfBirth, "CityOfBirth", "O campo 'CityOfBirth' não pode estar vazio.")
                     .IsNotNull(ExperienceTime, "ExperienceTime", "O campo 'ExperienceTime' não pode estar vazio.")
                     .IsNotNull(Summary, "Summary", "O campo 'Summary' não pode estar vazio.")
-                    .IsNotNull(AdministrationType, "AdministrationType", "O campo 'AdministrationType' não pode estar vazio.")
+                    .IsNotNull(IdAdministrationType, "AdministrationType", "O campo 'AdministrationType' não pode estar vazio.")
+                    .IsNotNull(IdEnterprise, "Enterprise", "O campo 'Enterprise' não pode estar vazio.")
             );
         }
 

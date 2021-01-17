@@ -78,7 +78,7 @@ namespace SkillsCore.Data.Mapping
                 .IsRequired()
                 .HasColumnType("int");
 
-            builder.HasOne(x => x.AdministrationType)
+            builder.HasOne<AdministrationType>(x => x.AdministrationType)
                 .WithMany(x => x.Users)
                 .HasForeignKey(x => x.IdAdministrationType);
 

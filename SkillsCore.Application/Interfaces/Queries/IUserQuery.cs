@@ -1,13 +1,14 @@
 ﻿using SkillsCore.Application.ViewModels.UserViewModel;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkillsCore.Application.Interfaces.Queries
 {
     public interface IUserQuery
     {
-        IEnumerable<UserViewModel> GetAllUsers();
-        UserViewModel GetUserByFiscalNr(int fiscalNr);
-        UserViewModel GetUserById(Guid id);
+        Task<IEnumerable<UserViewModel>> GetAllUsers();
+        Task<UserViewModel> GetUserByFiscalNr(int fiscalNr);
+        Task<UserViewModel> GetUserById(Guid id);
     }
 }

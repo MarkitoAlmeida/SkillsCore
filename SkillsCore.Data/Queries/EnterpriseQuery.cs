@@ -6,6 +6,7 @@ using SkillsCore.Application.ViewModels.EnterpriseViewModels;
 using SkillsCore.Data.Context;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Queries
 {
@@ -58,14 +59,14 @@ namespace SkillsCore.Data.Queries
 
         #region Methods
 
-        public IEnumerable<EnterpriseViewModel> GetAllEnterprises() =>
-            sqlConnection.Query<EnterpriseViewModel>(QueryGetAllEnterprises());
+        public async Task<IEnumerable<EnterpriseViewModel>> GetAllEnterprises() =>
+            await sqlConnection.QueryAsync<EnterpriseViewModel>(QueryGetAllEnterprises());
 
-        public EnterpriseViewModel GetEnterpriseByFiscalNr(int fiscalNr) =>
-            sqlConnection.QueryFirstOrDefault(QueryGetEnterpriseByFiscalNr(), new { fiscalNr });
+        public async Task<EnterpriseViewModel> GetEnterpriseByFiscalNr(int fiscalNr) =>
+            await sqlConnection.QueryFirstOrDefaultAsync(QueryGetEnterpriseByFiscalNr(), new { fiscalNr });
 
-        public EnterpriseViewModel GetEnterpriseById(Guid enterpriseId) =>
-            sqlConnection.QueryFirstOrDefault(QueryGetEnterpriseById(), new { enterpriseId });
+        public async Task<EnterpriseViewModel> GetEnterpriseById(Guid enterpriseId) =>
+            await sqlConnection.QueryFirstOrDefaultAsync(QueryGetEnterpriseById(), new { enterpriseId });
 
         #endregion
     }

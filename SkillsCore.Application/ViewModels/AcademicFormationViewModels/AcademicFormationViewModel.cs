@@ -13,5 +13,6 @@ namespace SkillsCore.Application.ViewModels.AcademicFormationViewModels
         public bool Excluded { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime LastUpdate { get; set; }
+        public Guid IdUser { get; set; }
     }
 }
