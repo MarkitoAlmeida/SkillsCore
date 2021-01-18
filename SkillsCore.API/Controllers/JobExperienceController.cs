@@ -8,45 +8,45 @@ using System.Threading.Tasks;
 
 namespace SkillsCore.API.Controllers
 {
-    [Route("JobExperience")]
-    [ApiController]
-    public class JobExperienceController : ControllerBase
-    {
-        #region Properties
+    //[Route("JobExperience")]
+    //[ApiController]
+    //public class JobExperienceController : ControllerBase
+    //{
+    //    #region Properties
 
-        private readonly IJobExperienceQuery _jobExperienceQuery;
-        private readonly IMediator _mediator;
+    //    private readonly IJobExperienceQuery _jobExperienceQuery;
+    //    private readonly IMediator _mediator;
 
-        #endregion
+    //    #endregion
 
-        #region Constructor
+    //    #region Constructor
 
-        public JobExperienceController(IJobExperienceQuery jobExperienceQuery, IMediator mediator)
-        {
-            _jobExperienceQuery = jobExperienceQuery;
-            _mediator = mediator;
-        }
+    //    public JobExperienceController(IJobExperienceQuery jobExperienceQuery, IMediator mediator)
+    //    {
+    //        _jobExperienceQuery = jobExperienceQuery;
+    //        _mediator = mediator;
+    //    }
 
-        #endregion
+    //    #endregion
 
-        #region Get
+    //    #region Get
 
-        /// <summary>
-        /// Retorna todos as línguas do usuário
-        /// </summary>
-        /// <param name="request"></param>
-        /// <returns></returns>
-        [HttpGet("getUserLanguages/{idUser}", Name = "GetAllLanguagesByUser")]
-        public async Task<IActionResult> GetUserCompetences([FromRoute] Guid idUser)
-        {
-            var result = await _languageQuery.GetAllLanguagesByUser(idUser);
+    //    /// <summary>
+    //    /// Retorna todos as línguas do usuário
+    //    /// </summary>
+    //    /// <param name="request"></param>
+    //    /// <returns></returns>
+    //    [HttpGet("getUserLanguages/{idUser}", Name = "GetAllLanguagesByUser")]
+    //    public async Task<IActionResult> GetUserCompetences([FromRoute] Guid idUser)
+    //    {
+    //        var result = await _languageQuery.GetAllLanguagesByUser(idUser);
 
-            if (result.Count() == 0)
-                return BadRequest(new ResponseApi(false, "User competences not found", null));
+    //        if (result.Count() == 0)
+    //            return BadRequest(new ResponseApi(false, "User competences not found", null));
 
-            return new OkObjectResult(new ResponseApi(true, "Users competences retrieved successul.", result));
-        }
+    //        return new OkObjectResult(new ResponseApi(true, "Users competences retrieved successul.", result));
+    //    }
 
-        #endregion
-    }
+    //    #endregion
+    //}
 }
