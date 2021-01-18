@@ -11,6 +11,7 @@ namespace SkillsCore.API.Configurations
             services.AddScoped<IAcademicFormationQuery, AcademicFormationQuery>();
             services.AddScoped<ICompetenceQuery, CompetencesQuery>();
             services.AddScoped<IEnterpriseQuery, EnterpriseQuery>();
+            services.AddScoped<ILanguageQuery, LanguageQuery>();
             services.AddScoped<IUserQuery, UserQuery>();
 
             return services;

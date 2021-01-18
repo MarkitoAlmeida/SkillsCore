@@ -1,8 +1,6 @@
 ﻿using SkillsCore.Domain.Enums;
 using SkillsCore.Shared.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SkillsCore.Domain.Models
 {
@@ -38,7 +36,14 @@ namespace SkillsCore.Domain.Models
 
         #region Methods
 
-
+        public void UpdateFields(Language fields)
+        {
+            LanguageName = fields.LanguageName;
+            LanguageUnderstanding = fields.LanguageUnderstanding;
+            LanguageWriting = fields.LanguageWriting;
+            LanguageSpeaking = fields.LanguageSpeaking;
+            LastUpdate = DateTime.UtcNow;
+        }
 
         #endregion
     }

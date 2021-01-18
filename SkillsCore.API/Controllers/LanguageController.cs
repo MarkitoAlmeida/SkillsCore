@@ -1,32 +1,30 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillsCore.Application.Interfaces.Queries;
-using SkillsCore.Domain.Commands.CompetenceCommands;
+using SkillsCore.Domain.Commands.LanguageCommands;
 using SkillsCore.Domain.Models.Response;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillsCore.API.Controllers
 {
-    [Route("Competences")]
+    [Route("Language")]
     [ApiController]
-    public class CompetencesController : ControllerBase
+    public class LanguageController : ControllerBase
     {
         #region Properties
 
-        private readonly ICompetenceQuery _competencesQuery;
+        private readonly ILanguageQuery _languageQuery;
         private readonly IMediator _mediator;
 
         #endregion
 
         #region Constructor
 
-        public CompetencesController(ICompetenceQuery competencesQuery, IMediator mediator)
+        public LanguageController(ILanguageQuery languageQuery, IMediator mediator)
         {
-            _competencesQuery = competencesQuery;
+            _languageQuery = languageQuery;
             _mediator = mediator;
         }
 
@@ -35,14 +33,14 @@ namespace SkillsCore.API.Controllers
         #region Get
 
         /// <summary>
-        /// Retorna todos as competências técnicas do usuário
+        /// Retorna todos as línguas do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpGet("getUserCompetences/{idUser}", Name = "GetAllCompetencesByUser")]
+        [HttpGet("getUserLanguages/{idUser}", Name = "GetAllLanguagesByUser")]
         public async Task<IActionResult> GetUserCompetences([FromRoute] Guid idUser)
         {
-            var result = await _competencesQuery.GetAllCompetencesByUser(idUser);
+            var result = await _languageQuery.GetAllLanguagesByUser(idUser);
 
             if (result.Count() == 0)
                 return BadRequest(new ResponseApi(false, "User competences not found", null));
@@ -55,12 +53,12 @@ namespace SkillsCore.API.Controllers
         #region Post
 
         /// <summary>
-        /// Cria uma ou mais competências do usuário
+        /// Cria uma ou mais linguas do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("createCompetence", Name = "CreateCompetence")]
-        public async Task<IActionResult> CreateCompetences([FromBody] CreateListCompetenceCommand createCompetence)
+        [HttpPost("createLanguage", Name = "CreateLanguage")]
+        public async Task<IActionResult> CreateLanguage([FromBody] CreateListLanguagesCommand createCompetence)
         {
             var result = await _mediator.Send(createCompetence);
 
@@ -72,14 +70,14 @@ namespace SkillsCore.API.Controllers
         #region Put
 
         /// <summary>
-        /// Edita uma ou mais competências do usuário
+        /// Edita uma ou mais linguas do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPut("updateCompetence", Name = "UpdateCompetence")]
-        public async Task<IActionResult> UpdateCompetences([FromBody] UpdateListCompetenceCommand updateCompetence)
+        [HttpPost("updateLanguage", Name = "UpdateLanguage")]
+        public async Task<IActionResult> UpdateLanguage([FromBody] UpdateListLanguagesCommand createCompetence)
         {
-            var result = await _mediator.Send(updateCompetence);
+            var result = await _mediator.Send(createCompetence);
 
             return Ok(result);
         }
@@ -89,19 +87,18 @@ namespace SkillsCore.API.Controllers
         #region Delete
 
         /// <summary>
-        /// Remove uma competência do usuário
+        /// Remove uma língua do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpDelete("deleteCompetence/{idUser}/{idCompetence}", Name = "DeleteCompetence")]
-        public async Task<IActionResult> DeleteCompetence([FromRoute] DeleteCompetenceCommand deleteCompetence)
+        [HttpDelete("deleteCompetence/{idUser}/{idLanguage}", Name = "DeleteLanguage")]
+        public async Task<IActionResult> DeleteLanguage([FromRoute] DeleteLanguageCommand deleteLanguage)
         {
-            var result = await _mediator.Send(deleteCompetence);
+            var result = await _mediator.Send(deleteLanguage);
 
             return Ok(result);
         }
 
         #endregion
-
     }
 }
