@@ -8,9 +8,10 @@ namespace SkillsCore.API.Configurations
     {
         public static IServiceCollection AddQueryConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IUserQuery, UserQuery>();
-            services.AddScoped<IEnterpriseQuery, EnterpriseQuery>();
             services.AddScoped<IAcademicFormationQuery, AcademicFormationQuery>();
+            services.AddScoped<ICompetenceQuery, CompetencesQuery>();
+            services.AddScoped<IEnterpriseQuery, EnterpriseQuery>();
+            services.AddScoped<IUserQuery, UserQuery>();
 
             return services;
         }

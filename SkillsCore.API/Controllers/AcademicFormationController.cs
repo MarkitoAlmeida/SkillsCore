@@ -37,10 +37,10 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpGet("getAcademic/{userId}", Name = "GetAllAcademicFormationByUser")]
-        public async Task<IActionResult> GetAllAcademicFormationByUser([FromRoute] Guid userId)
+        [HttpGet("getAcademic/{idUser}", Name = "GetAllAcademicFormationByUser")]
+        public async Task<IActionResult> GetAllAcademicFormationByUser([FromRoute] Guid idUser)
         {
-            var result = await _academicFormationQuery.GetUserFormationById(userId);
+            var result = await _academicFormationQuery.GetUserFormationById(idUser);
 
             if (result.Count() == 0)
                 return BadRequest(new ResponseApi(false, "Academic formation not found", null));
@@ -91,7 +91,7 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpDelete("deleteAcademicFormation/{idUser}/{idAcademicFormation}", Name = "DeleteAademicFormation")]
+        [HttpDelete("deleteAcademicFormation/{idUser}/{idAcademicFormation}", Name = "DeleteAcademicFormation")]
         public async Task<IActionResult> DeleteAcademicFormation([FromRoute] DeleteAcademicFormationCommand deleteFormation)
         {
             var result = await _mediator.Send(deleteFormation);

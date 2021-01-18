@@ -26,6 +26,7 @@ namespace SkillsCore.API.Controllers
             _userQuery = userQuery;
             _mediator = mediator;
         }
+
         #endregion
 
         #region Get

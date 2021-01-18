@@ -142,7 +142,7 @@ namespace SkillsCore.Application.Handlers
 
                 await _academicFormationRepository.Delete(academicFormation);
                 
-                return new ResponseApi(true, "Formação acadêmica deletada com sucesso", null);
+                return new ResponseApi(true, "Academic formation deleted sucessfuly", null);
             }
             catch (Exception e)
             {

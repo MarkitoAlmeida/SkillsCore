@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Data.Repositories;
-using SkillsCore.Shared.Models;
 
 namespace SkillsCore.API.Configurations
 {
@@ -9,9 +8,10 @@ namespace SkillsCore.API.Configurations
     {
         public static IServiceCollection AddRepositoryConfiguration(this IServiceCollection services)
         {
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
             services.AddScoped<IAcademicFormationRepository, AcademicFormationRepository>();
+            services.AddScoped<ICompetenceRepository, CompetenceRepository>();
+            services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }

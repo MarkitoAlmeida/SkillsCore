@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SkillsCore.Domain.Commands.AcademicFormationCommands;
+using SkillsCore.Domain.Commands.CompetenceCommands;
 using SkillsCore.Domain.Commands.EnterpriseCommands;
 using SkillsCore.Domain.Commands.UserCommands;
 using SkillsCore.Domain.Models;
@@ -14,6 +15,11 @@ namespace SkillsCore.Application.Mapper
             CreateMap<CreateAcademicFormationCommand, AcademicFormation>();
             CreateMap<UpdateAcademicFormationCommand, AcademicFormation>();
             CreateMap<DeleteAcademicFormationCommand, AcademicFormation>();
+
+            //Compenteces
+            CreateMap<CreateCompetenceCommand, Competences>();
+            CreateMap<UpdateCompetenceCommand, Competences>();
+            CreateMap<DeleteCompetenceCommand, Competences>();
 
             //Enterprise
             CreateMap<CreateEnterpriseCommand, Enterprise>();

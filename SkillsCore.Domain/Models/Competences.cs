@@ -1,7 +1,6 @@
 ﻿using SkillsCore.Domain.Enums;
 using SkillsCore.Shared.Models;
 using System;
-using System.Collections.Generic;
 
 namespace SkillsCore.Domain.Models
 {
@@ -34,7 +33,13 @@ namespace SkillsCore.Domain.Models
 
         #region Methods
 
-
+        public void UpdateFields(Competences fields)
+        {
+            CompetenceName = fields.CompetenceName;
+            CompetenceExperienceTime = fields.CompetenceExperienceTime;
+            TimeType = fields.TimeType;
+            LastUpdate = DateTime.UtcNow;
+        }
 
         #endregion
     }
