@@ -1,52 +1,104 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SkillsCore.Application.Interfaces.Queries;
+using SkillsCore.Domain.Commands.JobExperienceCommands;
+using SkillsCore.Domain.Models.Response;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillsCore.API.Controllers
 {
-    //[Route("JobExperience")]
-    //[ApiController]
-    //public class JobExperienceController : ControllerBase
-    //{
-    //    #region Properties
+    [Route("JobExperience")]
+    [ApiController]
+    public class JobExperienceController : ControllerBase
+    {
+        #region Properties
 
-    //    private readonly IJobExperienceQuery _jobExperienceQuery;
-    //    private readonly IMediator _mediator;
+        private readonly IJobExperienceQuery _jobExperienceQuery;
+        private readonly IMediator _mediator;
 
-    //    #endregion
+        #endregion
 
-    //    #region Constructor
+        #region Constructor
 
-    //    public JobExperienceController(IJobExperienceQuery jobExperienceQuery, IMediator mediator)
-    //    {
-    //        _jobExperienceQuery = jobExperienceQuery;
-    //        _mediator = mediator;
-    //    }
+        public JobExperienceController(IJobExperienceQuery jobExperienceQuery, IMediator mediator)
+        {
+            _jobExperienceQuery = jobExperienceQuery;
+            _mediator = mediator;
+        }
 
-    //    #endregion
+        #endregion
 
-    //    #region Get
+        #region Get
 
-    //    /// <summary>
-    //    /// Retorna todos as línguas do usuário
-    //    /// </summary>
-    //    /// <param name="request"></param>
-    //    /// <returns></returns>
-    //    [HttpGet("getUserLanguages/{idUser}", Name = "GetAllLanguagesByUser")]
-    //    public async Task<IActionResult> GetUserCompetences([FromRoute] Guid idUser)
-    //    {
-    //        var result = await _languageQuery.GetAllLanguagesByUser(idUser);
+        /// <summary>
+        /// Retorna todos as línguas do usuário
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpGet("getUserJobExperiences/{idUser}", Name = "GetAllJobExperiencesByUser")]
+        public async Task<IActionResult> GetUserCompetences([FromRoute] Guid idUser)
+        {
+            var result = await _jobExperienceQuery.GetAllJobExperiencesByUser(idUser);
 
-    //        if (result.Count() == 0)
-    //            return BadRequest(new ResponseApi(false, "User competences not found", null));
+            if (result.Count() == 0)
+                return BadRequest(new ResponseApi(false, "User competences not found", null));
 
-    //        return new OkObjectResult(new ResponseApi(true, "Users competences retrieved successul.", result));
-    //    }
+            return new OkObjectResult(new ResponseApi(true, "Users competences retrieved successul.", result));
+        }
 
-    //    #endregion
-    //}
+        #endregion
+
+        #region Post
+
+        /// <summary>
+        /// Cria uma ou mais experiencias de trabalho do usuário
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("createJobExperience", Name = "createJobExperience")]
+        public async Task<IActionResult> CreateLanguage([FromBody] CreateListJobExperiencesCommand createCompetence)
+        {
+            var result = await _mediator.Send(createCompetence);
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Put
+
+        /// <summary>
+        /// Edita uma ou mais linguas do usuário
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost("updateJobExperience", Name = "updateJobExperience")]
+        public async Task<IActionResult> UpdateLanguage([FromBody] UpdateListJobExperiencesCommand createCompetence)
+        {
+            var result = await _mediator.Send(createCompetence);
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Delete
+
+        /// <summary>
+        /// Remove uma língua do usuário
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpDelete("deleteJobExperience/{idUser}/{idJobExperience}", Name = "DeleteJobExperience")]
+        public async Task<IActionResult> DeleteLanguage([FromRoute] DeleteJobExperienceCommand deleteLanguage)
+        {
+            var result = await _mediator.Send(deleteLanguage);
+
+            return Ok(result);
+        }
+
+        #endregion
+    }
 }

@@ -41,7 +41,17 @@ namespace SkillsCore.Domain.Models
 
         #region Methods
 
-
+        public void UpdateFields(JobExperience fields)
+        {
+            EnterpriseName = fields.EnterpriseName;
+            BeginDate = fields.BeginDate;
+            FinalDate = fields.FinalDate;
+            JobTitle = fields.JobTitle;
+            ProjectDescription = fields.ProjectDescription;
+            ProjectResponsabilities = fields.ProjectResponsabilities;
+            TecnologiesUsed = fields.TecnologiesUsed;
+            LastUpdate = DateTime.UtcNow;
+        }
 
         #endregion
     }
