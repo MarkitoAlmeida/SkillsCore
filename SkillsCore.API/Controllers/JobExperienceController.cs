@@ -33,7 +33,7 @@ namespace SkillsCore.API.Controllers
         #region Get
 
         /// <summary>
-        /// Retorna todos as línguas do usuário
+        /// Retorna todos as experiencias de trabalho do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace SkillsCore.API.Controllers
         #region Put
 
         /// <summary>
-        /// Edita uma ou mais linguas do usuário
+        /// Edita uma ou mais experiencias de trabalho do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -87,7 +87,7 @@ namespace SkillsCore.API.Controllers
         #region Delete
 
         /// <summary>
-        /// Remove uma língua do usuário
+        /// Remove uma experiencia de trabalho do usuário
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
