@@ -43,9 +43,9 @@ namespace SkillsCore.API.Controllers
             var result = await _languageQuery.GetAllLanguagesByUser(idUser);
 
             if (result.Count() == 0)
-                return BadRequest(new ResponseApi(false, "User competences not found", null));
+                return BadRequest(new ResponseApi(false, "User languages not found", null));
 
-            return new OkObjectResult(new ResponseApi(true, "Users competences retrieved successul.", result));
+            return new OkObjectResult(new ResponseApi(true, "Users languages retrieved successuly.", result));
         }
 
         #endregion

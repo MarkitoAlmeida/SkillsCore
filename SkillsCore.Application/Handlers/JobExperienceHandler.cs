@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SkillsCore.Application.Interfaces.Repositories;
-using SkillsCore.Application.ViewModels.JobExperience;
+using SkillsCore.Application.ViewModels.JobExperienceViewModels;
 using SkillsCore.Domain.Commands.JobExperienceCommands;
 using SkillsCore.Domain.Interfaces.Handlers;
 using SkillsCore.Domain.Models;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SkillsCore.Application.ViewModels.JobExperience
+namespace SkillsCore.Application.ViewModels.JobExperienceViewModels
 {
     public class JobExperienceViewModel
     {
