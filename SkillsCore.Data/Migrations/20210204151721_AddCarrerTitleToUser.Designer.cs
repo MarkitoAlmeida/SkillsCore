@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillsCore.Data.Context;
 
 namespace SkillsCore.Data.Migrations
 {
     [DbContext(typeof(SkillsContext))]
-    partial class SkillsContextModelSnapshot : ModelSnapshot
+    [Migration("20210204151721_AddCarrerTitleToUser")]
+    partial class AddCarrerTitleToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,56 +292,6 @@ namespace SkillsCore.Data.Migrations
                     b.HasIndex("IdUser");
 
                     b.ToTable("Language");
-                });
-
-            modelBuilder.Entity("SkillsCore.Domain.Models.SkillsDossier", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("DateTime");
-
-                    b.Property<int>("CreationNr")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EnterpriseName")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("varchar(450)");
-
-                    b.Property<bool>("Excluded")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("IdEnterprise")
-                        .HasColumnType("guid");
-
-                    b.Property<Guid>("IdUserCreated")
-                        .HasColumnType("guid");
-
-                    b.Property<Guid>("IdUserResquest")
-                        .HasColumnType("guid");
-
-                    b.Property<DateTime>("LastUpdate")
-                        .HasColumnType("DateTime");
-
-                    b.Property<string>("UserCreatedName")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("varchar(450)");
-
-                    b.Property<string>("UserResquestName")
-                        .IsRequired()
-                        .HasMaxLength(450)
-                        .HasColumnType("varchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SkillsDossier");
                 });
 
             modelBuilder.Entity("SkillsCore.Domain.Models.User", b =>

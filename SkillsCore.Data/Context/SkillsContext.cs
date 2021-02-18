@@ -16,7 +16,7 @@ namespace SkillsCore.Data.Context
         public DbSet<Enterprise> Enterprises { get; set; }
         public DbSet<JobExperience> JobExperiences { get; set; }
         public DbSet<Language> Languages { get; set; }
-        //public DbSet<SkillsDossier> SkillsDossier { get; set; }
+        public DbSet<SkillsDossier> SkillsDossiers { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ namespace SkillsCore.Data.Context
             modelBuilder.ApplyConfiguration(new EnterpriseMap());
             modelBuilder.ApplyConfiguration(new JobExperienceMap());
             modelBuilder.ApplyConfiguration(new LanguageMap());
-            //modelBuilder.ApplyConfiguration(new SkillsDossierMap());
+            modelBuilder.ApplyConfiguration(new SkillsDossierMap());
             modelBuilder.ApplyConfiguration(new UserMap());
 
             base.OnModelCreating(modelBuilder);

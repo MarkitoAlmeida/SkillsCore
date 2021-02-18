@@ -3,7 +3,7 @@ using System;
 
 namespace SkillsCore.Domain.Models
 {
-    public class SkillsDossier
+    public class SkillsDossier : Entity
     {
         #region Constructor
 
@@ -33,7 +33,6 @@ namespace SkillsCore.Domain.Models
         public Guid IdEnterprise { get; private set; }
         public string EnterpriseName { get; private set; }
         public int CreationNr { get; private set; }
-        public DateTime CreationDate { get; private set; }
 
         #endregion
     }

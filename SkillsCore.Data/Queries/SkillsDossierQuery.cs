@@ -36,7 +36,7 @@ namespace SkillsCore.Data.Queries
                 SELECT
 					*
 				FROM
-					[dbo].[User]
+					[dbo].[User] AS u
                 WHERE
 	                u.Id = @idUser
             ";
@@ -85,21 +85,25 @@ namespace SkillsCore.Data.Queries
 	                u.Country,
 	                u.ExperienceTime,
 	                u.Summary,
+					af.Id AS AcademicFormation_Id,
 	                af.InstituitionName AS AcademicFormation_InstituitionName,
 	                af.ConclusionDate AS AcademicFormation_ConclusionDate,
 	                af.CourseTitle AS AcademicFormation_CourseTitle,
 	                af.FinalPaperTitle AS AcademicFormation_FinalPaperTitle,
+					l.Id AS Language_Id,
 	                l.LanguageName AS Language_LanguageName,
 	                l.LanguageWriting AS Language_LanguageWriting,
 	                l.LanguageUnderstanding AS Language_LanguageUnderstanding,
 	                l.LanguageSpeaking AS Language_LanguageSpeaking,
-	                je.EnterpriseName AS JobExperience_,
+					je.Id AS JobExperience_Id,
+	                je.EnterpriseName AS JobExperience_EnterpriseName,
 	                je.JobTitle AS JobExperience_JobTitle, 
 	                je.BeginDate AS JobExperience_BeginDate,
 	                je.FinalDate AS JobExperience_FinalDate,
 	                je.ProjectDescription AS JobExperience_ProjectDescription,
 	                je.ProjectResponsabilities AS JobExperience_ProjectResponsabilities,
 	                je.TecnologiesUsed AS JobExperience_TecnologiesUsed,
+					c.Id AS Competence_Id,
 	                c.CompetenceName AS Competence_CompetenceName,
 	                c.CompetenceExperienceTime AS Competence_CompetenceExperienceTime,
 	                c.TimeType AS Competence_TimeType

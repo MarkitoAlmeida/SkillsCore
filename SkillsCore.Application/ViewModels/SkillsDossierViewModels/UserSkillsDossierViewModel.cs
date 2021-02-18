@@ -17,9 +17,9 @@ namespace SkillsCore.Application.ViewModels.SkillsDossierViewModels
         public string Country { get; set; }
         public int ExperienceTime { get; set; }
         public string Summary { get; set; }
-        List<AcademicFormationViewModel> AcademicFormation { get; set; }
-        List<LanguageViewModel> Language { get; set; }
-        List<JobExperienceViewModel> JobExperience { get; set; }
-        List<CompetenceViewModel> Competence { get; set; }
+        public List<AcademicFormationViewModel> AcademicFormation { get; set; }
+        public List<LanguageViewModel> Language { get; set; }
+        public List<JobExperienceViewModel> JobExperience { get; set; }
+        public List<CompetenceViewModel> Competence { get; set; }
     }
 }
