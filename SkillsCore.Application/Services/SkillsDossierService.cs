@@ -61,22 +61,23 @@ namespace SkillsCore.Application.Services
         public byte[] CreateWordFile(UserSkillsDossierViewModel userCreated, EnterpriseViewModel userEnterprise)
         {
             XWPFDocument doc = new XWPFDocument();
-            
 
-            using (var fs = new FileStream(userCreated.CompleteName + ".docx", FileMode.Create, FileAccess.Write))
-            {
-                var p0 = doc.CreateParagraph();
-                p0.Alignment = ParagraphAlignment.CENTER;
-                XWPFRun r0 = p0.CreateRun();
-                r0.FontFamily = "Arial";
-                r0.FontSize = 12;
-                r0.IsBold = false;
-                r0.SetText("Teste");
+            byte[] teste;
 
-                doc.Write(fs);
-            }
+            //using (var fs = new FileStream(userCreated.CompleteName + ".docx", FileMode.Create, FileAccess.Write))
+            //{
+            //    var p0 = doc.CreateParagraph();
+            //    p0.Alignment = ParagraphAlignment.CENTER;
+            //    XWPFRun r0 = p0.CreateRun();
+            //    r0.FontFamily = "Arial";
+            //    r0.FontSize = 12;
+            //    r0.IsBold = false;
+            //    r0.SetText("Teste");
 
-            return doc;
+            //    doc.Write(fs);
+            //}
+
+            return teste = null;
         }
 
         #endregion
