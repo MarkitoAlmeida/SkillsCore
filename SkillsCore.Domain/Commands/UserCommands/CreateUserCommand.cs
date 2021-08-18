@@ -23,6 +23,7 @@ namespace SkillsCore.Domain.Commands.UserCommands
         public string City { get;  set; }
         public string Country { get;  set; }
         public string CityOfBirth { get;  set; }
+        public string CarrerTitle { get; set; }
         public int ExperienceTime { get;  set; }
         public string Summary { get;  set; }
         public Guid IdAdministrationType { get;  set; }
@@ -51,6 +52,9 @@ namespace SkillsCore.Domain.Commands.UserCommands
                     .IsNotNull(City, "City", "O campo 'City' não pode estar vazio.")
                     .IsNotNull(Country, "Country", "O campo 'Country' não pode estar vazio.")
                     .IsNotNull(CityOfBirth, "CityOfBirth", "O campo 'CityOfBirth' não pode estar vazio.")
+                    .IsNotNull(CarrerTitle, "CarrerTitle", "O campo 'CarrerTitle' não pode estar vazio.")
+                    .HasMaxLen(CarrerTitle, 50, "CarrerTitle", "O campo 'CarrerTitle' deve conter no máximo 50 caracteres.")
+                    .HasMinLen(CarrerTitle, 3, "CarrerTitle", "O campo 'CarrerTitle' deve conter no mínimo 3 caracteres.")
                     .IsNotNull(ExperienceTime, "ExperienceTime", "O campo 'ExperienceTime' não pode estar vazio.")
                     .IsNotNull(Summary, "Summary", "O campo 'Summary' não pode estar vazio.")
                     .IsNotNull(IdAdministrationType, "AdministrationType", "O campo 'AdministrationType' não pode estar vazio.")

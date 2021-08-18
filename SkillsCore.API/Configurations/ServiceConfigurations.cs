@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using SkillsCore.Application.Factory;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.Services;
 using System;
@@ -14,6 +15,7 @@ namespace SkillsCore.API.Configurations
             services.AddMediatR(assembly);
 
             services.AddScoped<ISkillsDossierService, SkillsDossierService>();
+            services.AddScoped<IFileFactory, FileFactory>();
 
             return services;
         }

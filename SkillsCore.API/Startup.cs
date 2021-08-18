@@ -54,7 +54,7 @@ namespace SkillsCore.API
             services.AddRepositoryConfiguration();
             services.AddServiceConfiguration();
 
-            services.AddMvc(); //Middleware
+            //services.AddMvc(); //Middleware
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

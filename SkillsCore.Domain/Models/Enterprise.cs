@@ -8,7 +8,7 @@ namespace SkillsCore.Domain.Models
     {
         #region Constructor
 
-        Enterprise() { }
+        public Enterprise() { }
 
         public Enterprise(string name, int fiscalNr, string email, string phone, string street,
             string stateProvince, string city, string country)
