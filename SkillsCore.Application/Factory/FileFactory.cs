@@ -2,10 +2,12 @@
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels.EnterpriseViewModels;
 using SkillsCore.Application.ViewModels.SkillsDossierViewModels;
+using SkillsCore.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace SkillsCore.Application.Factory
@@ -194,7 +196,7 @@ namespace SkillsCore.Application.Factory
                     <p class='birth'>{userCreated.BirthDay:dd/MM/yyyy}</p>
                 </div>
             ");
-            sb.Append(@"<hr>");
+            sb.Append("<hr>");
 
             //Corpo
             sb.Append(@"
@@ -205,19 +207,21 @@ namespace SkillsCore.Application.Factory
                 </div>
             ");
             sb.Append(@$"
-                <br>
                 <div class='summary'>
                     <p>{userCreated.Summary}</p>
                 </div>
             ");
 
             sb.Append(@"
+                <br>
                 <div class='competencesTitle'>
                     <p>
                         <b>COMPETENCES</b>
                     </p>
                 </div>
             ");
+
+            var programming = userCreated.Competence.Where(x => x.CompetenceType == ECompetenceType.Programming).ToList();
 
             sb.Append(@"
                 <div>
@@ -238,15 +242,15 @@ namespace SkillsCore.Application.Factory
                                     Time
                                 </td>
                             </tr>");
-                        for (int i = 0; i < userCreated.Competence.Count; i++)
+            for (int i = 0; i < programming.Count; i++)
                         {
                             sb.Append(
                             @$"<tr>
                                 <td class='td'>
-                                    {userCreated.Competence[i].CompetenceName}
+                                    {programming[i].CompetenceName}
                                 </td>
                                 <td class='td'>
-                                    {userCreated.Competence[i].CompetenceExperienceTime}
+                                    {programming[i].CompetenceExperienceTime}
                                 </td>
                             </tr>");
                         }
@@ -254,6 +258,85 @@ namespace SkillsCore.Application.Factory
                     </table>
                 </div>
             ");
+
+            var database = userCreated.Competence.Where(x => x.CompetenceType == ECompetenceType.Database).ToList();
+
+            sb.Append(@"
+                <div>
+                    <table class='table'>
+                        <thead class='tableTitle'>
+                            <tr>
+                                <th colspan='2'>
+                                    Database
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class='td'>
+                                    Technology
+                                </td>
+                                <td class='td'>
+                                    Time
+                                </td>
+                            </tr>");
+            for (int i = 0; i < database.Count; i++)
+            {
+                sb.Append(
+                @$"<tr>
+                                <td class='td'>
+                                    {database[i].CompetenceName}
+                                </td>
+                                <td class='td'>
+                                    {database[i].CompetenceExperienceTime}
+                                </td>
+                            </tr>");
+            }
+            sb.Append(@"</tbody>
+                    </table>
+                </div>
+            ");
+            
+            var other = userCreated.Competence.Where(x => x.CompetenceType == ECompetenceType.Other).ToList();
+
+            if (other.Count != 0)
+            {
+                sb.Append(@"
+                <div>
+                    <table class='table'>
+                        <thead class='tableTitle'>
+                            <tr>
+                                <th colspan='2'>
+                                    Other
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class='td'>
+                                    Technology
+                                </td>
+                                <td class='td'>
+                                    Time
+                                </td>
+                            </tr>");
+                    for (int i = 0; i < database.Count; i++)
+                    {
+                        sb.Append(
+                        @$"<tr>
+                            <td class='td'>
+                                {database[i].CompetenceName}
+                            </td>
+                            <td class='td'>
+                                {database[i].CompetenceExperienceTime}
+                            </td>
+                        </tr>");
+                    }
+                sb.Append(@"</tbody>
+                        </table>
+                    </div>
+                ");
+            }
 
             sb.Append(@"
                 <br>
@@ -266,15 +349,20 @@ namespace SkillsCore.Application.Factory
             for (int i = 0; i < userCreated.JobExperience.Count; i++)
             {
                 if (i != 0)
-                    sb.Append("<hr style='margin:0px 0px -200px 0; padding:0;'>");
+                    sb.Append("<hr>");
 
                 sb.Append(@$"
                     <div class='jobXp'>
-                        <p class='jobHeader'>
-                            <b>{userCreated.JobExperience[i].EnterpriseName} - {userCreated.JobExperience[i].JobTitle}</b>
-                        </p>
-                        <hr style='margin:0; padding:0;'>
-                        <p style='text-align: right;'>{userCreated.JobExperience[i].BeginDate:Y} - {userCreated.JobExperience[i].FinalDate:Y}</p>
+                        <table style='width: 100%; border-bottom: 1px solid gray;'>
+                            <tbody>
+                                <tr>
+                                    <td style='text-align: right;'>
+                                        <b>{userCreated.JobExperience[i].EnterpriseName} - {userCreated.JobExperience[i].JobTitle}</b>
+                                    <td>
+                                </tr>
+                            <tbody>
+                        </table>
+                        <p style='text-align: right;'>{ci.DateTimeFormat.GetMonthName(userCreated.JobExperience[i].BeginDate.Month)} of {userCreated.JobExperience[i].BeginDate.Year} to {ci.DateTimeFormat.GetMonthName(userCreated.JobExperience[i].FinalDate.Month)} of {userCreated.JobExperience[i].FinalDate.Year}</p>
                         <p><b>Project Context:</b>
                         <p>{userCreated.JobExperience[i].ProjectDescription}</p>
                         <p><b>Main Activities:</b>

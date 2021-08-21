@@ -108,7 +108,8 @@ namespace SkillsCore.Data.Queries
 						c.Id AS Competence_Id,
 						c.CompetenceName AS Competence_CompetenceName,
 						c.CompetenceExperienceTime AS Competence_CompetenceExperienceTime,
-						c.TimeType AS Competence_TimeType
+						c.TimeType AS Competence_TimeType,
+						c.CompetenceType AS Competence_CompetenceType
 					FROM
 						[dbo].[User] AS u
 					left JOIN
