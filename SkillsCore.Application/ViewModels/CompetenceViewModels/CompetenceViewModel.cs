@@ -9,6 +9,7 @@ namespace SkillsCore.Application.ViewModels.CompetenceViewModels
         public string CompetenceName { get;  set; }
         public int CompetenceExperienceTime { get;  set; }
         public ETimeType TimeType { get;  set; }
+        public ECompetenceType CompetenceType { get; set; }
         public bool Active { get; set; }
         public bool Excluded { get; set; }
         public DateTime CreationDate { get; set; }
