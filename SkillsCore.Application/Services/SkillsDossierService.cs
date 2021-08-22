@@ -2,15 +2,8 @@
 using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Domain.Models;
-using SkillsCore.Domain.Models.Response;
 using System;
 using System.Threading.Tasks;
-using SkillsCore.Application.ViewModels.SkillsDossierViewModels;
-using SkillsCore.Application.ViewModels.EnterpriseViewModels;
-using MariGold.OpenXHTML;
-using System.IO;
-using DocumentFormat.OpenXml;
-using SkillsCore.Application.Factory;
 
 namespace SkillsCore.Application.Services
 {
@@ -38,7 +31,7 @@ namespace SkillsCore.Application.Services
 
         #region Methods
 
-        public async Task<ResponseApi> CreateDossier(Guid idUserRequested, Guid idUserCreated)
+        public async Task<(byte[] archieveData, string fileType, string archiveName)> CreateDossier(Guid idUserRequested, Guid idUserCreated)
         {
             try
             {
@@ -47,18 +40,16 @@ namespace SkillsCore.Application.Services
                 var userEnterprise = await _skillsDossierQuery.GetUserResquestEnterpise((Guid)userRequest.IdEnterprise);
                 var count = await _skillsDossierQuery.GetCountCreatedDossier(idUserCreated);
 
-                _fileFactory.CreateWordFile(userCreated, userEnterprise);
+                var (archiveData, fileType, archiveName) = _fileFactory.CreateWordFile(userCreated, userEnterprise);
 
                 SkillsDossier skillsDossier = new SkillsDossier(userCreated.Id, userCreated.CompleteName, userRequest.Id, String.Concat(userRequest.Name, " ", userRequest.LastName), userEnterprise.Id, userEnterprise.Name, count, DateTime.UtcNow);
                 await _skillsDossierRepository.Insert(skillsDossier);
-
-                var result = skillsDossier;
                 
-                return new ResponseApi(true, "Skills Dossier created sucessfuly.", result);
+                return (archiveData, fileType, archiveName);
             }
             catch (Exception e)
             {
-                return new ResponseApi(false, "Error...", e);
+                return (null, "error", "error");
             }
         }
 

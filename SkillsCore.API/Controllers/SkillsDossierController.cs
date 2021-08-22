@@ -2,6 +2,7 @@
 using SkillsCore.Application.Interfaces.Services;
 using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SkillsCore.API.Controllers
 {
@@ -32,9 +33,9 @@ namespace SkillsCore.API.Controllers
         [HttpPost("createSkillsDossier/{idUserRequested}/{idUserCreated}", Name = "CreateSkillsDossier")]
         public async Task<IActionResult> CreateSkillsDossier([FromRoute] Guid idUserRequested, Guid idUserCreated)
         {
-            var result = await _skillsDossierService.CreateDossier(idUserRequested, idUserCreated);
+            var (archiveData, fileType, archiveName) = await _skillsDossierService.CreateDossier(idUserRequested, idUserCreated);
 
-            return Ok(result);
+            return Ok(File(archiveData, fileType, archiveName));
         }
 
         #endregion

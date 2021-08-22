@@ -5,6 +5,6 @@ namespace SkillsCore.Application.Interfaces.Services
 {
     public interface IFileFactory
     {
-        void CreateWordFile(UserSkillsDossierViewModel userCreated, EnterpriseViewModel userEnterprise);
+        (byte[] archieveData, string fileType, string archiveName) CreateWordFile(UserSkillsDossierViewModel userCreated, EnterpriseViewModel userEnterprise);
     }
 }

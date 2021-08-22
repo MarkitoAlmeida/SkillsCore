@@ -6,6 +6,6 @@ namespace SkillsCore.Application.Interfaces.Services
 {
     public interface ISkillsDossierService
     {
-        Task<ResponseApi> CreateDossier(Guid idUserRequested, Guid idUserCreated);
+        Task<(byte[] archieveData, string fileType, string archiveName)> CreateDossier(Guid idUserRequested, Guid idUserCreated);
     }
 }

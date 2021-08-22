@@ -3,8 +3,6 @@ using SkillsCore.Application.Interfaces.Services;
 using SkillsCore.Application.ViewModels.EnterpriseViewModels;
 using SkillsCore.Application.ViewModels.SkillsDossierViewModels;
 using SkillsCore.Domain.Enums;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,34 +12,17 @@ namespace SkillsCore.Application.Factory
 {
     public class FileFactory : IFileFactory
     {
-        public void CreateWordFile(UserSkillsDossierViewModel userCreated, EnterpriseViewModel userEnterprise)
+        public (byte[] archieveData, string fileType, string archiveName) CreateWordFile(UserSkillsDossierViewModel userCreated, EnterpriseViewModel userEnterprise)
         {
-            WordDocument doc = new WordDocument("teste2.docx");
             
-            var html = CreateHtml(userCreated);
-            doc.Process(new HtmlParser(html));
-            doc.Save();
-
-
-            //doc.Process(new HtmlParser(html));
-
-
-            //var tempPath = Path.GetTempPath();
-
-            //using FileStream file = new FileStream(Path.Combine(tempPath, "teste.docx"), FileMode.Create, FileAccess.Write);
-            //using MemoryStream mem = new MemoryStream();
-
-            //var count = doc.Document.ChildElements.Count;
-
-            //for (int i = 1; i < doc.Document.ChildElements.Count; i++)
-            //{
-            //    OpenXmlElement para = doc.Document.Body.ChildElements[i];
-            //    OpenXmlElement run = para.ChildElements[i];
-            //    OpenXmlElement text = run.ChildElements[i];
-            //}
-
-            //doc.Save();
-
+            var html =CreateHtml(userCreated);
+            
+            using MemoryStream mem = new MemoryStream();
+            WordDocument doc2 = new WordDocument(mem);
+            doc2.Process(new HtmlParser(html));
+            doc2.Save();
+            
+            return (mem.ToArray(), "application/word", $"{userCreated.CompleteName.ToUpper()}.docx");
         }
 
         private string CreateHtml(UserSkillsDossierViewModel userCreated)
