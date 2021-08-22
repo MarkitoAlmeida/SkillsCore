@@ -18,8 +18,10 @@ namespace SkillsCore.Application.ViewModels.UserViewModel
         public string City { get; set; }
         public string Country { get; set; }
         public string CityOfBirth { get; set; }
+        public string CarrerTitle { get; set; }
         public int ExperienceTime { get; set; }
         public string Summary { get; set; }
+        public Guid? IdEnterprise { get; set; }
         public bool Active { get; set; }
         public bool Excluded { get; set; }
         public DateTime CreationDate { get; set; }

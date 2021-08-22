@@ -1,4 +1,4 @@
-﻿using SkillsCore.Application.ViewModels.JobExperience;
+﻿using SkillsCore.Application.ViewModels.JobExperienceViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

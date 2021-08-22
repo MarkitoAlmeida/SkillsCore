@@ -65,6 +65,11 @@ namespace SkillsCore.Data.Mapping
                 .HasMaxLength(100)
                 .HasColumnType("varchar(100)");
 
+            builder.Property(x => x.CarrerTitle)
+                .IsRequired()
+                .HasMaxLength(50)
+                .HasColumnType("varchar(50)");
+
             builder.Property(x => x.ExperienceTime)
                 .IsRequired()
                 .HasColumnType("int");

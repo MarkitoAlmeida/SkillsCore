@@ -13,6 +13,7 @@ namespace SkillsCore.API.Configurations
             services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
             services.AddScoped<IJobExperienceRepository, JobExperienceRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<ISkillsDossierRepository, SkillsDossierRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             return services;

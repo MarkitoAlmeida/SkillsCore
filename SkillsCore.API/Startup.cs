@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SkillsCore.API.Configurations;
 using SkillsCore.API.Helpers;
+using SkillsCore.Data.Context;
 using System.Text.Json.Serialization;
 
 namespace SkillsCore.API
@@ -35,6 +37,7 @@ namespace SkillsCore.API
                 .AddControllers(options => options.OutputFormatters.RemoveType<HttpNoContentOutputFormatter>())
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
+            //services.AddDbContext<SkillsContext>();
             //services.AddDbContext<SkillsContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SkillsDB")));
             //services.AddTransient<SkillsContext, SkillsContext>();
             services.AddSkillsContext(Configuration);
@@ -49,12 +52,9 @@ namespace SkillsCore.API
 
             services.AddResponseCompression();
 
-            //AddDependencyInjection(services);
             services.AddQueryConfiguration();
             services.AddRepositoryConfiguration();
             services.AddServiceConfiguration();
-
-            services.AddMvc(); //Middleware
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -85,10 +85,5 @@ namespace SkillsCore.API
                 endpoints.MapControllers();
             });
         }
-
-        //public void AddDependencyInjection(IServiceCollection services)
-        //{
-        //    DependencyInjection.RegisterDependencyInjection(services);
-        //}
     }
 }

@@ -14,6 +14,7 @@ namespace SkillsCore.Domain.Commands.CompetenceCommands
         public string CompetenceName { get; set; }
         public int CompetenceExperienceTime { get; set; }
         public ETimeType TimeType { get; set; }
+        public ECompetenceType CompetenceType { get; set; }
         public Guid IdUser { get; set; }
 
         #endregion
@@ -29,6 +30,7 @@ namespace SkillsCore.Domain.Commands.CompetenceCommands
                     .HasMinLen(CompetenceName, 1, "CompetenceName", "O nome da competência deve conter no mínimo 1 caracter")
                     .IsNotNull(CompetenceExperienceTime, "CompetenceExperienceTime", "O campo  'tempo de experiência' não pode estar vazio.")
                     .IsNotNull(TimeType, "TimeType", "O campo 'tipo do tempo' não pode estar vazio.")
+                    .IsNotNull(CompetenceType, "CompetenceType", "O campo 'tipo de competência' não pode estar vazio.")
             );
         }
 

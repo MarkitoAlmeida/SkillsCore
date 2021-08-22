@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SkillsCore.Application.Interfaces.Queries;
-using SkillsCore.Application.ViewModels.JobExperience;
+using SkillsCore.Application.ViewModels.JobExperienceViewModels;
 using SkillsCore.Data.Context;
 using System;
 using System.Collections.Generic;

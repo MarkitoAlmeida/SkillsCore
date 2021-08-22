@@ -3,7 +3,6 @@ using SkillsCore.Application.Interfaces.Repositories;
 using SkillsCore.Data.Context;
 using SkillsCore.Domain.Models;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkillsCore.Data.Repositories
@@ -31,8 +30,8 @@ namespace SkillsCore.Data.Repositories
         }
         
         public async Task<Enterprise> GetEnterpriseByFiscalNr(int fiscalNr)
-        {
-            return await _context.Enterprises.Where(x => x.FiscalNr == fiscalNr).FirstAsync();
+        {   
+            return await _context.Enterprises.FirstOrDefaultAsync(x => x.FiscalNr == fiscalNr);
         }
 
         public async Task Insert(Enterprise enterprise)

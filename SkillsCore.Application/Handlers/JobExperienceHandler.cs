@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SkillsCore.Application.Interfaces.Repositories;
-using SkillsCore.Application.ViewModels.JobExperience;
+using SkillsCore.Application.ViewModels.JobExperienceViewModels;
 using SkillsCore.Domain.Commands.JobExperienceCommands;
 using SkillsCore.Domain.Interfaces.Handlers;
 using SkillsCore.Domain.Models;
@@ -83,7 +83,7 @@ namespace SkillsCore.Application.Handlers
             }
             catch (Exception e)
             {
-                return new ResponseApi(false, "Error...", e);
+                return new ResponseApi(false, "Error...", e.Message);
             }
         }
 
@@ -136,7 +136,7 @@ namespace SkillsCore.Application.Handlers
             }
             catch (Exception e)
             {
-                return new ResponseApi(false, "Error...", e);
+                return new ResponseApi(false, "Error...", e.Message);
             }
         }
 

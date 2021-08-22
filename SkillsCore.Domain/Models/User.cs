@@ -11,9 +11,9 @@ namespace SkillsCore.Domain.Models
 
         public User() { }
 
-        public User(string name, string lastName, int fiscalNr, string email, string password, DateTime birthDay, EGender gender,
-            string phone, string street, string stateProvince, string city, string country, string cityOfBirth, int experienceTime,
-            string summary, Guid idAdministrationType, Guid idEnterprise)
+        public User(string name, string lastName, int fiscalNr, string email, string password, DateTime birthDay,
+            EGender gender, string phone, string street, string stateProvince, string city, string country, string cityOfBirth,
+            string carrerTitle, int experienceTime, string summary, Guid idAdministrationType, Guid idEnterprise)
         {
             Name = name;
             LastName = lastName;
@@ -28,6 +28,7 @@ namespace SkillsCore.Domain.Models
             City = city;
             Country = country;
             CityOfBirth = cityOfBirth;
+            CarrerTitle = carrerTitle;
             ExperienceTime = experienceTime;
             Summary = summary;
             IdAdministrationType = idAdministrationType;
@@ -51,12 +52,13 @@ namespace SkillsCore.Domain.Models
         public string City { get; private set; }
         public string Country { get; private set; }
         public string CityOfBirth { get; private set; }
+        public string CarrerTitle { get; private set; }
         public int ExperienceTime { get; private set; }
         public string Summary { get; private set; }
         public Guid IdAdministrationType { get; private set; }
         public Guid IdEnterprise { get; private set; }
 
-        public virtual AdministrationType AdministrationType { get; private set; }
+        public virtual AdministrationType AdministrationType { get; set; }
         public virtual Enterprise Enterprise { get; set; }
 
         public virtual IEnumerable<AcademicFormation> AcademicFormations { get; set; }
@@ -79,6 +81,7 @@ namespace SkillsCore.Domain.Models
             StateProvince = fields.StateProvince;
             City = fields.City;
             Country = fields.Country;
+            CarrerTitle = fields.CarrerTitle;
             ExperienceTime = fields.ExperienceTime;
             Summary = fields.Summary;
             LastUpdate = DateTime.UtcNow;

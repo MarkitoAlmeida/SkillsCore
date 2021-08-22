@@ -40,9 +40,9 @@ namespace SkillsCore.Application.Handlers
                 if (request.Invalid)
                     return new ResponseApi(false, "Ops, something is wrong...", request.Notifications);
 
-                //var userExists = _userRepository.GetUserByFiscalNr(request.FiscalNr);
-                //if (userExists != null)
-                //    return new ResponseApi(false, "User already exists.", userExists);
+                var userExists = await _userRepository.GetUserByFiscalNr(request.FiscalNr);
+                if (userExists != null)
+                    return new ResponseApi(false, "User already exists.", userExists);
 
                 User user = _mapper.Map<User>(request);
                 await _userRepository.Insert(user);
@@ -62,8 +62,10 @@ namespace SkillsCore.Application.Handlers
                     City = user.City,
                     Country = user.Country,
                     CityOfBirth = user.CityOfBirth,
+                    CarrerTitle = user.CarrerTitle,
                     ExperienceTime = user.ExperienceTime,
                     Summary = user.Summary,
+                    IdEnterprise = user.IdEnterprise,
                     Active = user.Active,
                     Excluded = user.Excluded,
                     CreationDate = user.CreationDate
@@ -105,8 +107,10 @@ namespace SkillsCore.Application.Handlers
                     City = user.City,
                     Country = user.Country,
                     CityOfBirth = user.CityOfBirth,
+                    CarrerTitle = user.CarrerTitle,
                     ExperienceTime = user.ExperienceTime,
                     Summary = user.Summary,
+                    IdEnterprise = user.IdEnterprise,
                     Active = user.Active,
                     Excluded = user.Excluded,
                     CreationDate = user.CreationDate,

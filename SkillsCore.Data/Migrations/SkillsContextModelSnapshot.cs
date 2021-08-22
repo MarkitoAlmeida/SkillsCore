@@ -15,9 +15,9 @@ namespace SkillsCore.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.9")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("SkillsCore.Domain.Models.AcademicFormation", b =>
                 {
@@ -109,6 +109,9 @@ namespace SkillsCore.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int>("CompetenceType")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("DateTime");
@@ -292,6 +295,56 @@ namespace SkillsCore.Data.Migrations
                     b.ToTable("Language");
                 });
 
+            modelBuilder.Entity("SkillsCore.Domain.Models.SkillsDossier", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int>("CreationNr")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EnterpriseName")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("varchar(450)");
+
+                    b.Property<bool>("Excluded")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("IdEnterprise")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUserCreated")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUserResquest")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("UserCreatedName")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("varchar(450)");
+
+                    b.Property<string>("UserResquestName")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("varchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SkillsDossier");
+                });
+
             modelBuilder.Entity("SkillsCore.Domain.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -303,6 +356,11 @@ namespace SkillsCore.Data.Migrations
 
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("DateTime");
+
+                    b.Property<string>("CarrerTitle")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("City")
                         .IsRequired()
