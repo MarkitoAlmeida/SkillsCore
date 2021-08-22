@@ -24,6 +24,10 @@ namespace SkillsCore.Data.Mapping
                 .IsRequired()
                 .HasColumnType("int");
 
+            builder.Property(x => x.CompetenceType)
+                .IsRequired()
+                .HasColumnType("int");
+
             builder.HasOne<User>(x => x.User)
                 .WithMany(x => x.Competences)
                 .HasForeignKey(x => x.IdUser);

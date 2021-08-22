@@ -73,7 +73,7 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPut("updateEnterprises", Name = "UpdateEnterprise")]
+        [HttpPut("updateEnterprise", Name = "UpdateEnterprise")]
         public async Task<IActionResult> UpdateEnterprises([FromBody] UpdateEnterpriseCommand updateEnterprise)
         {
             var result = await _mediator.Send(updateEnterprise);
@@ -90,7 +90,7 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPut("deleteEnterprises/{idEnterprise}", Name = "DeleteEnterprise")]
+        [HttpDelete("deleteEnterprises/{idEnterprise}", Name = "DeleteEnterprise")]
         public async Task<IActionResult> DeleteEnterprises([FromRoute] DeleteEnterpriseCommand deleteEnterprise)
         {
             var result = await _mediator.Send(deleteEnterprise);

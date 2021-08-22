@@ -2,6 +2,7 @@
 using SkillsCore.Application.ViewModels.SkillsDossierViewModels;
 using SkillsCore.Application.ViewModels.UserViewModel;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SkillsCore.Application.Interfaces.Queries

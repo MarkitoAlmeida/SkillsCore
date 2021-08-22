@@ -74,7 +74,7 @@ namespace SkillsCore.API.Controllers
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        [HttpPost("updateLanguage", Name = "UpdateLanguage")]
+        [HttpPut("updateLanguage", Name = "UpdateLanguage")]
         public async Task<IActionResult> UpdateLanguage([FromBody] UpdateListLanguagesCommand createCompetence)
         {
             var result = await _mediator.Send(createCompetence);

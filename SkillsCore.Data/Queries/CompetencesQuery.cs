@@ -31,7 +31,16 @@ namespace SkillsCore.Data.Queries
         private string QueryGetAllCompetencesByUser() =>
             @"
                 SELECT
-                    *
+                    Id,
+                    CompetenceName,
+                    CompetenceExperienceTime,
+                    TimeType,
+                    CompetenceType,
+                    IdUser,
+                    CreationDate,
+                    LastUpdate,
+                    Active,
+                    Excluded
                 FROM
                     Competences
                 WHERE

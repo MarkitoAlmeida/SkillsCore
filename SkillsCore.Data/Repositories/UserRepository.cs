@@ -17,7 +17,7 @@ namespace SkillsCore.Data.Repositories
 
         public async Task<User> GetUserByFiscalNr(int fiscalNr)
         {
-            return await _context.Users.Where(x => x.FiscalNr == fiscalNr).FirstAsync();
+            return await _context.Users.FirstOrDefaultAsync(x => x.FiscalNr == fiscalNr);
         }
 
         public async Task<User> Get(Guid id)
